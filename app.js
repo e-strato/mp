@@ -211,12 +211,9 @@
     }, true)
   }
 
-  // [Похожие предложения] Карусель по кругу (Owl loop: true): видно 4 / 3 / 2 / 1, точки — страницы; фото в карточке — своя лента с точками
-  const carousel = $('.js-carousel')
-  const dots = $('.js-carousel-dots')
-  if (carousel && dots) {
-    // Фото внутри карточки: ленту и точки строим до клонов карусели, чтобы клоны вышли с готовой разметкой
-    $$('.card__img', carousel).forEach((view) => {
+  // [Карточка .card] Фото листаются: своя лента с точками и стрелками (похожие предложения, подборка)
+  const cardPhotos = (root) =>
+    $$('.card__img.js-slider-view', root).forEach((view) => {
       const cardDots = $('.js-card-dots', view)
       const count = $$('.js-slides > *', view).length
       cardDots.innerHTML = count > 1 ? '<span></span>'.repeat(count) : ''
@@ -226,6 +223,13 @@
       $('.js-prev', view).addEventListener('click', (e) => { e.preventDefault(); s.go(s.index - 1) })
       $('.js-next', view).addEventListener('click', (e) => { e.preventDefault(); s.go(s.index + 1) })
     })
+
+  // [Похожие предложения] Карусель по кругу (Owl loop: true): видно 4 / 3 / 2 / 1, точки — страницы
+  const carousel = $('.js-carousel')
+  const dots = $('.js-carousel-dots')
+  if (carousel && dots) {
+    // Фото карточек — до клонов карусели, чтобы клоны вышли с готовой разметкой
+    cardPhotos(carousel)
     const per = () => (innerWidth >= 1280 ? 4 : innerWidth >= 992 ? 3 : innerWidth >= 768 ? 2 : 1)
     const mark = (k) => $$('button', dots).forEach((b, p) => b.setAttribute('aria-current', String(p === Math.floor(k / per()))))
     const s = slider(carousel, { loop: true, gap: 12, per, onChange: mark })
@@ -422,9 +426,14 @@
   const up = $('.js-up')
   if (up) up.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }))
 
-  // [Подборка] «Интересно» — отметка объекта, без перехода
-  $$('.js-interest').forEach((b) =>
-    b.addEventListener('click', () => b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true'))),
+  // [Подборка] Фото карточек листаются; «Интересно» / «Неинтересно» — выбор по объекту, без перехода: повторный клик снимает
+  const selCards = $('#sel-cards')
+  if (selCards) cardPhotos(selCards)
+  $$('.js-choice').forEach((b) =>
+    b.addEventListener('click', () => {
+      const on = b.getAttribute('aria-pressed') !== 'true'
+      $$('.js-choice', b.parentElement).forEach((x) => x.setAttribute('aria-pressed', String(x === b && on)))
+    }),
   )
 
   // [Подборка] Окно «Открытый объект»: клик по карточке (не по кнопке) — окно с её объектом (данные — blocks/selection/objects.html),
@@ -484,22 +493,7 @@
     addEventListener('keydown', (e) => e.key === 'Escape' && !selModal.hidden && open(false), true)
   }
 
-  // [Телефон] Закреплённые кнопки: появляются, когда прокрутили цену, и прячутся, пока видны такие же кнопки в контактах
+  // [Телефон] Закреплённые кнопки «Хочу посмотреть / Предложить цену» — видны всегда (в блоке связи на телефоне их нет — дирижёр 16.10)
   const sticky = $('.js-sticky-actions')
-  const price = $('#price')
-  const contact = $('.js-contact-actions')
-  if (sticky && price && contact) {
-    let passedPrice = false
-    let contactVisible = false
-    const update = () => sticky.classList.toggle('is-shown', mobile.matches && passedPrice && !contactVisible)
-    new IntersectionObserver(([e]) => {
-      passedPrice = !e.isIntersecting && e.boundingClientRect.top < 0
-      update()
-    }).observe(price)
-    new IntersectionObserver(([e]) => {
-      contactVisible = e.isIntersecting
-      update()
-    }).observe(contact)
-    mobile.addEventListener('change', update)
-  }
+  if (sticky) sticky.classList.add('is-shown')
 })()

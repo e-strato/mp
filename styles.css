@@ -6,6 +6,7 @@
 
 /* === Шрифты: Gilroy с malinaproperty.ru === */
 @font-face { font-family: 'Gilroy'; font-weight: 400; font-display: swap; src: url('fonts/gilroy-regular.woff2') format('woff2'); }
+@font-face { font-family: 'Gilroy'; font-weight: 600; font-display: swap; src: url('fonts/gilroy-semibold.woff2') format('woff2'); }
 @font-face { font-family: 'Gilroy'; font-weight: 500; font-display: swap; src: url('fonts/gilroy-medium.woff') format('woff'); }
 @font-face { font-family: 'Gilroy'; font-weight: 700; font-display: swap; src: url('fonts/gilroy-bold.woff') format('woff'); }
 /* Квиз — шрифты сайта (Oswald, Golos Text), свои копии с Google Fonts */
@@ -66,6 +67,8 @@
   --c-glass-10: rgba(255, 255, 255, .1); --c-glass-20: rgba(255, 255, 255, .2);
   --c-arrow-shadow: rgba(62, 63, 66, .5); --c-arrow-shadow-hover: rgba(62, 63, 66, .7);
   --c-link: #3f63be;                        /* ссылка «Соглашением» (сайт) */
+  --c-panel-end: #f8f8f8;   /* низ градиента карточки связи (решение 7, D13.4) */
+  --c-panel-border: #e6e7ea; /* рамка карточки связи */
   --c-error: #ff0000; --c-error-bg: #fdd2d2; --c-error-glow: rgba(255, 0, 0, .3); /* ошибка поля (сайт) */
 
   /* Типографика — стили Figma Malina/Desktop/* (мобильные переопределены ниже) */
@@ -79,14 +82,19 @@
   --fs-h3: 20px;       --lh-h3: 28px;       /* H3 */
   --fs-h2: 24px;       --lh-h2: 32px;       /* H2, Title */
   --fs-h1: 32px;       --lh-h1: 40px;       /* H1 */
+  --fs-lead: 17px;     --lh-lead: 28px;     /* Lead */
+  --fs-display: 48px;  --lh-display: 56px;  /* Display */
+  --fw-head: 600;      /* H1–H3 и Display — Gilroy Semibold (решение 7, G) */
 
   /* Шапка: высота по живому сайту — 114 (две строки) / 64 на телефоне */
   --header-h: 114px;
 }
 @media (max-width: 767px) {
   :root {
-    /* Malina/Mobile/*: H1 24/32 Regular, H2 20/28, Title 20/28, Label 12/16 */
+    /* Malina/Mobile/*: H1 24/32, H2 20/28, Title 20/28, Label 12/16, Lead 15/24, Display 28/36 */
     --fs-h1: 24px; --lh-h1: 32px;
+    --fs-lead: 15px; --lh-lead: 24px;
+    --fs-display: 28px; --lh-display: 36px;
     --fs-h2: 20px; --lh-h2: 28px;
     --fs-label: 12px; --lh-label: 16px;
     --header-h: 64px;
@@ -168,10 +176,12 @@ html:not([data-manager="no"]) .if-no-manager { display: none !important; }
   font-size: 14px; line-height: 20px; letter-spacing: .5px; text-transform: uppercase; }
 .btn--select:hover { background: var(--c-text-2); color: var(--c-white); }
 .btn--select:hover img { filter: invert(1); }
-/* Серая рамка (Интересно, Подобрать похожее); нажатая — красная */
-.btn--line { background: var(--c-white); border-color: var(--c-border); color: var(--c-text); }
-.btn--line:hover { border-color: var(--c-text-2); }
-.btn--line[aria-pressed="true"] { border-color: var(--c-accent); background: var(--c-accent-15); color: var(--c-accent); }
+/* Тихая кнопка без рамки (Неинтересно): 40, Button Text 14/20 */
+.btn--quiet { height: 40px; background: none; color: var(--c-muted); font-size: 14px; line-height: 20px; }
+.btn--quiet:hover { color: var(--c-text); }
+/* Нажатые (aria-pressed): рамочная — заливается, тихая — серая подложка */
+.btn--outline[aria-pressed="true"] { background: var(--c-accent); color: var(--c-white); }
+.btn--quiet[aria-pressed="true"] { background: var(--c-surface); color: var(--c-text); }
 
 /* Круглая кнопка-иконка: 48 на фото (полупрозрачная), 28 с рамкой (избранное, назад) */
 .icon-btn { display: inline-flex; align-items: center; justify-content: center; flex: none; border-radius: 50%; }
@@ -198,12 +208,6 @@ html:not([data-manager="no"]) .if-no-manager { display: none !important; }
   font-weight: 700; font-size: var(--fs-tag); line-height: var(--lh-tag); letter-spacing: .5px; text-transform: uppercase; color: var(--c-text-2); white-space: nowrap; }
 .tag__tail { width: 8px; height: 20px; }
 
-/* Лента-заголовок раздела: красное тело + хвост (Figma Section Ribbon) */
-.ribbon { display: inline-flex; align-items: flex-start; flex: none; }
-.ribbon__body { padding: 8px 10px; background: var(--c-accent); color: var(--c-white); white-space: nowrap;
-  font-weight: 700; font-size: 24px; line-height: 32px; }
-.ribbon__tail { width: 50px; height: 48px; }
-
 /* Бейдж на фото карточки */
 .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; color: var(--c-white);
   font-size: var(--fs-caption); line-height: var(--lh-caption); }
@@ -220,7 +224,7 @@ html:not([data-manager="no"]) .if-no-manager { display: none !important; }
 @media (max-width: 767px) { .kv--wide-pad .kv__row { padding: 8px 16px; } }
 
 /* Заголовок раздела с иконкой (Информация по арендатору, Коммерческие условия) */
-.sec-title { display: flex; align-items: center; gap: 16px; font-weight: 700; font-size: var(--fs-h2); line-height: var(--lh-h2); color: var(--c-text); }
+.sec-title { display: flex; align-items: center; gap: 16px; font-weight: var(--fw-head); font-size: var(--fs-h2); line-height: var(--lh-h2); color: var(--c-text); }
 .sec-title img { width: 24px; height: 24px; flex: none; }
 @media (max-width: 767px) { .sec-title { gap: 12px; } }
 
@@ -280,7 +284,7 @@ html:not([data-manager="no"]) .if-no-manager { display: none !important; }
 #header .nav-item:hover { color: var(--c-accent); }
 #header .nav-item img { width: 10px; height: 10px; }
 #header .header-bottom { display: flex; align-items: center; gap: 16px; height: 64px; }
-#header .logo img { width: 182px; height: 30px; }
+#header .logo img { width: 182px; height: 32px; }
 #header .logo-note { font-size: 14px; line-height: 20px; color: var(--c-text-2); white-space: nowrap; }
 #header .spacer { flex: 1; }
 #header .messenger img { width: 20px; height: 20px; }
@@ -305,7 +309,7 @@ html:not([data-manager="no"]) .if-no-manager { display: none !important; }
 @media (max-width: 767px) {
   #header { border-bottom: 1px solid var(--c-border); }
   #header .header-bottom { gap: 6px; }
-  #header .logo img { width: 111.93px; height: 18.45px; }
+  #header .logo img { width: 111.93px; height: 19.68px; }
   #header .phone { font-size: var(--fs-caption); line-height: var(--lh-caption); }
   /* Порядок на телефоне: телефон → WhatsApp → звонок */
   #header .messenger--wa { order: 1; }
@@ -343,7 +347,7 @@ html:not([data-manager="no"]) .if-no-manager { display: none !important; }
   font-size: var(--fs-caption); line-height: var(--lh-caption); color: var(--c-on-dark); }
 #footer .footer-main { display: flex; align-items: flex-start; gap: 20px; padding-top: 20px; padding-bottom: 24px; border-bottom: 1px solid var(--c-border-on-dark); }
 #footer .footer-brand { display: flex; gap: 16px; align-items: flex-start; }
-#footer .footer-brand img { width: 182px; height: 30px; }
+#footer .footer-brand img { width: 182px; height: 32px; }
 #footer .footer-brand p { font-size: 14px; line-height: 20px; white-space: nowrap; }
 #footer .footer-links { display: flex; flex-direction: column; gap: 11px; font-size: var(--fs-text); line-height: var(--lh-text); white-space: nowrap; }
 #footer .footer-links a:hover { color: var(--c-accent); }
@@ -365,7 +369,7 @@ html:not([data-manager="no"]) .if-no-manager { display: none !important; }
   #footer .footer-about { padding-top: 16px; padding-bottom: 0; font-size: 0; line-height: 0; color: transparent; }
   #footer .footer-main { flex-wrap: nowrap; align-items: center; padding-top: 16px; padding-bottom: 8px; border-bottom: 0; }
   #footer .footer-brand { width: auto; }
-  #footer .footer-brand img { width: 127.4px; height: 21px; }
+  #footer .footer-brand img { width: 127.4px; height: 22.4px; }
   #footer .footer-brand p, #footer .footer-links, #footer .footer-actions { display: none; }
   #footer .footer-phone { display: block; }
   #footer .footer-copy { padding: 8px 0 16px; }
@@ -381,7 +385,7 @@ html:not([data-manager="no"]) .if-no-manager { display: none !important; }
 #object-title { padding-top: 16px; padding-bottom: 20px; }
 #object-title .object-wrap { display: flex; flex-direction: column; gap: 12px; }
 #object-title .title-row { display: flex; align-items: flex-start; gap: 16px; }
-#object-title h1 { flex: 1; min-width: 0; font-weight: 700; font-size: var(--fs-h1); line-height: var(--lh-h1); color: var(--c-text); }
+#object-title h1 { flex: 1; min-width: 0; font-weight: var(--fw-head); font-size: var(--fs-h1); line-height: var(--lh-h1); color: var(--c-text); }
 #object-title .views { flex: none; white-space: nowrap; font-size: var(--fs-caption); line-height: var(--lh-caption); color: var(--c-light); }
 #object-title .info-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
 #object-title .address { font-weight: 700; font-size: var(--fs-subtitle); line-height: var(--lh-subtitle); }
@@ -393,7 +397,6 @@ html:not([data-manager="no"]) .if-no-manager { display: none !important; }
   #object-title .object-wrap { gap: 8px; }
   #object-title .mobile-actions { display: flex; justify-content: space-between; }
   #object-title .title-row .views, #object-title .title-row .icon-btn { display: none; }
-  #object-title h1 { font-weight: 400; }
   #object-title .info-row { flex-direction: column; align-items: flex-start; gap: 8px; }
 }
 
@@ -470,7 +473,7 @@ html:not([data-manager="no"]) .if-no-manager { display: none !important; }
 #gallery .g-full__thumbs .thumb[aria-current="true"] { border-color: var(--c-white); }
 #gallery .g-full__thumbs .thumb img { width: 100%; height: 100%; object-fit: cover; }
 .g-full__panel { width: 320px; flex: none; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding: 32px 24px; overflow-y: auto; background: var(--c-white); }
-.g-full__panel h2 { font-weight: 700; font-size: var(--fs-h2); line-height: var(--lh-h2); }
+.g-full__panel h2 { font-weight: var(--fw-head); font-size: var(--fs-h2); line-height: var(--lh-h2); }
 .g-full__address { font-weight: 700; font-size: var(--fs-subtitle); line-height: var(--lh-subtitle); }
 .g-full__metro { display: flex; align-items: center; gap: 6px; font-size: var(--fs-subtitle); line-height: var(--lh-subtitle); }
 .g-full__metro img { width: 20px; height: 20px; flex: none; }
@@ -526,18 +529,19 @@ html:not([data-manager="no"]) .if-no-manager { display: none !important; }
 #tenant, #terms { display: flex; flex-direction: column; gap: 20px; }
 @media (max-width: 767px) { #tenant, #terms { gap: 16px; } }
 
-/* === Контакты (blocks/object/contact.html) === */
-#contact { display: flex; flex-direction: column; gap: 12px; }
-#contact .agent { display: flex; align-items: center; gap: 16px; padding: 12px 16px 12px 12px; border-radius: 8px; background: var(--c-row); }
+/* === Контакты (blocks/object/contact.html) — одна светлая карточка: градиент, тонкая рамка (решение 7, D13.4) === */
+#contact { display: flex; flex-direction: column; gap: 12px; padding: 16px; border: 1px solid var(--c-panel-border); border-radius: 16px;
+  background: linear-gradient(180deg, var(--c-white), var(--c-panel-end)); }
+#contact .agent { display: flex; align-items: center; gap: 16px; }
 #contact .agent-photo { width: 72px; height: 72px; border-radius: 50%; flex: none; object-fit: cover; }
 #contact .agent-logo { width: 72px; height: 72px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center;
   background: var(--c-white); border: 1px solid var(--c-border-input); }
 #contact .agent-logo img { width: 43.2px; height: 20.25px; }
 #contact .agent-role { font-size: var(--fs-caption); line-height: var(--lh-caption); color: var(--c-light); }
 #contact .agent-name { font-weight: 700; font-size: var(--fs-h2); line-height: var(--lh-h2); color: var(--c-text); }
-#contact .actions { display: flex; flex-direction: column; gap: 10px; }
-#contact .dark-panel { display: flex; flex-direction: column; gap: 12px; padding: 20px; border-radius: 8px; background: var(--c-dark); }
-#contact .dark-panel h3 { font-weight: 700; font-size: var(--fs-body); line-height: var(--lh-body); color: var(--c-white); }
+#contact .actions { display: flex; flex-direction: column; gap: 12px; }
+#contact .connect { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+#contact .connect h3 { font-weight: var(--fw-head); font-size: var(--fs-body); line-height: var(--lh-body); color: var(--c-text); }
 #contact .messengers { display: flex; gap: 8px; }
 #contact .messengers a { flex: 1; height: 48px; border-radius: 4px; display: flex; align-items: center; justify-content: center; }
 #contact .messengers a:hover { opacity: .85; }
@@ -545,18 +549,23 @@ html:not([data-manager="no"]) .if-no-manager { display: none !important; }
 #contact .m-whatsapp { background: var(--c-whatsapp); }
 #contact .m-telegram { background: var(--c-telegram); }
 #contact .m-max { background: linear-gradient(90deg, var(--c-max-1), var(--c-max-2) 50%, var(--c-max-3)); }
-#contact .callback { display: flex; flex-direction: column; gap: 8px; }
+/* Звонок в одну строку: поле — вся оставшаяся ширина, кнопка — по содержимому */
+#contact .callback { display: flex; flex-wrap: wrap; gap: 8px; }
+#contact .callback .input { flex: 1; min-width: 0; width: auto; }
+#contact .callback .btn { flex: none; }
+#contact .callback .consent { flex-basis: 100%; }
 @media (max-width: 767px) {
   #contact .agent { gap: 12px; }
   #contact .agent-photo, #contact .agent-logo { width: 56px; height: 56px; }
   #contact .agent-logo img { width: 33.6px; height: 15.75px; }
-  #contact .dark-panel { padding: 20px 16px; }
+  /* На странице объекта эти кнопки на телефоне — закреплённые внизу (blocks/object/sticky.html); в окне подборки остаются */
+  body:has(#sticky-actions) #contact .actions { display: none; }
 }
 
 /* === Похожие предложения (blocks/object/similar.html) — карусель: 4 / 3 / 2 / 1 карточки, как .js-more-carousel === */
 #similar { background: var(--c-page); padding: 24px 0; }
 #similar .s-head { display: flex; flex-direction: column; align-items: center; gap: 16px; margin-bottom: 24px; }
-#similar h2 { font-weight: 700; font-size: var(--fs-h1); line-height: var(--lh-h1); color: var(--c-text); text-align: center; }
+#similar h2 { font-weight: var(--fw-head); font-size: var(--fs-h1); line-height: var(--lh-h1); color: var(--c-text); text-align: center; }
 #similar .tabs { display: flex; border-radius: 2px; }
 #similar .tabs button { width: 120px; height: 32px; font-weight: 700; font-size: var(--fs-caption); line-height: var(--lh-caption);
   letter-spacing: .5px; text-transform: uppercase; background: var(--c-banner); border: 1px solid var(--c-border); color: var(--c-light); }
@@ -570,51 +579,55 @@ html:not([data-manager="no"]) .if-no-manager { display: none !important; }
 @media (max-width: 767px) {
   #similar { background: var(--c-white); }
   #similar .s-head { margin-bottom: 20px; }
-  #similar h2 { font-weight: 400; }
   #similar .tabs { display: none; }
   #similar .track { --n: 1; }
   #similar .dots { margin-bottom: 20px; }
 }
 
-/* === Форма заявки (blocks/object/lead.html) === */
+/* === Форма заявки (blocks/object/lead.html) — как подвал подборки (решение 7, H), Figma Lead Form 2801:9648 === */
 #lead { background: var(--c-page); padding: 16px 0 0; }
-#lead .lead-card { position: relative; height: 400px; border-radius: 4px; overflow: hidden; background: var(--c-white); }
+#lead .lead-card { position: relative; height: 448px; border-radius: 16px; overflow: hidden; }
 #lead .decor { position: absolute; right: 0; top: 0; width: 891px; height: 532px; overflow: hidden; }
 #lead .decor img { position: absolute; top: 0; left: 0; width: 109.35%; height: 100%; max-width: none; }
-#lead .content { position: absolute; left: 80px; top: 64px; width: 560px; display: flex; flex-direction: column; gap: 16px; }
-#lead h2 { font-weight: 700; font-size: var(--fs-h1); line-height: var(--lh-h1); color: var(--c-text-2); }
+/* ≥ 992 своего фона нет — лежит на фоне секции. С менеджером: фото 608×608 у правого края (за край на 40), сверху −20;
+   переход — маской на самом фото по его правому краю, 120 (знак-полосы сзади не перекрываются). Без менеджера — логотип 400 справа по центру высоты */
+#lead .photo { position: absolute; inset: 0; pointer-events: none; }
+#lead .photo img { position: absolute; top: -20px; right: -40px; width: 608px; max-width: none;
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 120px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 120px), transparent); }
+#lead .logo { position: absolute; right: 92px; top: 50%; transform: translateY(-50%); width: 400px; height: auto; }
+/* Текст и поля — по левой линии карточек «Похожие предложения» (лента 4 × 296 + 3 × 12 по центру) */
+#lead .content { position: absolute; left: 6px; top: 56px; width: 560px; display: flex; flex-direction: column; gap: 16px; }
+#lead h2 { font-weight: var(--fw-head); font-size: var(--fs-h1); line-height: var(--lh-h1); color: var(--c-text-2); }
 #lead .lead-text { font-size: var(--fs-text); line-height: var(--lh-text); color: var(--c-text-2); }
-#lead form { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; margin-top: 16px; }
+#lead form { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; margin-top: 32px; }
 #lead .inputs { display: flex; gap: 16px; width: 100%; }
 #lead .inputs .input { flex: 1; min-width: 0; }
-#lead .broker-photo { position: absolute; right: 115px; bottom: 0; width: 390px; height: 390px; object-fit: cover; }
-#lead .broker { position: absolute; right: 5px; top: 172px; display: flex; flex-direction: column; gap: 6px; }
-#lead .broker-name { font-size: 24px; line-height: 32px; color: var(--c-text-2); }
-#lead .broker-role { font-size: var(--fs-text); line-height: var(--lh-text); color: var(--c-gray); width: 90px; }
-#lead .wordmark { position: absolute; right: 140px; top: 50%; transform: translateY(-50%); width: 320px; height: 89.72px; }
-#lead .broker-photo-m, #lead .broker-m, #lead .wordmark-m { display: none; }
-/* 992–1279: правая часть уже — фото и подпись ужимаются */
+/* 992–1279: карточка уже — фото меньше, текст ближе к краю */
 @media (max-width: 1279px) {
-  #lead .content { left: 48px; width: 460px; }
-  #lead .broker-photo { right: 60px; width: 340px; height: 340px; }
-  #lead .broker { display: none; }
-  #lead .wordmark { right: 48px; width: 280px; height: 78.5px; }
+  #lead .content { left: 21px; width: 460px; }
+  #lead .photo img { width: 440px; }
+  #lead .logo { right: 48px; width: 320px; }
 }
-/* < 992 — колонкой, как на телефоне */
+/* < 992 — как на телефоне (Figma 390): фото сверху в колонке 300, под ним текст по центру; поля друг под другом */
 @media (max-width: 991px) {
-  #lead { padding: 0; }
-  #lead .container { width: auto; padding: 0; }
-  #lead .lead-card { height: auto; border-radius: 0; background: var(--c-page); padding: 40px 8px 32px; }
-  #lead .decor, #lead .broker-photo, #lead .broker, #lead .wordmark { display: none; }
-  #lead .content { position: static; width: auto; max-width: 560px; margin: 0 auto; align-items: center; gap: 12px; text-align: center; }
+  #lead { padding: 24px 0; background: var(--c-white); }
+  #lead .container { padding: 0 16px; }
+  #lead .lead-card { height: auto; padding-top: 300px; background: var(--c-surface); }
+  #lead .decor { left: calc(50% - 333px); right: auto; width: 553px; height: 300px; }
+  #lead .photo { bottom: auto; height: 300px; overflow: hidden; }
+  #lead .photo img { top: 0; right: auto; left: 50%; transform: translateX(-50%); width: 340px; -webkit-mask-image: none; mask-image: none; }
+  #lead .photo::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(0deg, var(--c-surface), transparent); }
+  #lead .content { position: relative; left: auto; top: auto; width: auto; max-width: 560px; margin: 0 auto; padding: 24px 20px; align-items: center; gap: 12px; text-align: center; }
   #lead h2 { font-size: var(--fs-h3); line-height: var(--lh-h3); }
-  #lead .broker-photo-m { display: block; width: 120px; height: 120px; }
-  #lead .broker-m { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-  #lead .broker-m b { font-weight: 400; font-size: 24px; line-height: 32px; color: var(--c-text); }
-  #lead .broker-m span { font-size: 16px; line-height: 24px; color: var(--c-gray); }
-  #lead .wordmark-m { display: block; width: 200px; height: 56.075px; }
-  #lead form { width: 100%; margin-top: 0; padding-top: 24px; gap: 12px; }
-  #lead form .btn { width: 100%; }
+  #lead form { align-self: stretch; margin-top: 8px; gap: 12px; }
+  #lead .inputs { flex-direction: column; gap: 8px; }
+  #lead .inputs .input { flex: none; height: 48px; }
+  #lead form .btn { width: 100%; height: 48px; }
+  #lead .consent { text-align: left; }
+  /* Без менеджера: колонка сверху 160, логотип 240 по центру */
+  html[data-manager="no"] #lead .lead-card { padding-top: 160px; }
+  html[data-manager="no"] #lead .decor { height: 160px; }
+  #lead .logo { top: 71px; right: auto; left: 50%; transform: translateX(-50%); width: 240px; }
 }
 
 /* === Плашка «объявление смотрят» (blocks/object/toast.html) — под шапкой справа === */
@@ -688,98 +701,100 @@ html:has(#sel-header) { scroll-padding-top: 0; }
 
 /* === Шапка подборки (blocks/selection/header.html) === */
 #sel-header .container { display: flex; align-items: center; gap: 12px; padding-top: 20px; padding-bottom: 20px; }
-#sel-header .logo img { width: 182px; height: 30px; }
+#sel-header .logo img { width: 182px; height: 32px; }
 #sel-header .spacer { flex: 1; }
 #sel-header .broker { display: flex; flex-direction: column; align-items: flex-end; white-space: nowrap; }
 #sel-header .broker-name { font-weight: 700; font-size: var(--fs-body); line-height: var(--lh-body); }
 #sel-header .broker-role { font-size: var(--fs-caption); line-height: var(--lh-caption); color: var(--c-light); }
 @media (max-width: 767px) { #sel-header .container { padding: 12px 16px; } }
 
-/* === Вступление (blocks/selection/intro.html) === */
+/* === Вступление (blocks/selection/intro.html) — A1: метка «Личная подборка», заголовок Display, Lead === */
 #sel-intro .container { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; padding-top: 40px; padding-bottom: 40px; }
-#sel-intro h1 { max-width: 800px; font-weight: 700; font-size: var(--fs-h1); line-height: var(--lh-h1); }
-#sel-intro .lead { max-width: 680px; font-size: 16px; line-height: 24px; color: var(--c-muted); }
+#sel-intro .eyebrow { display: flex; align-items: center; gap: 8px; color: var(--c-accent); font-size: 14px; line-height: 20px; }
+#sel-intro .eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--c-accent); }
+#sel-intro h1 { max-width: 900px; font-weight: var(--fw-head); font-size: var(--fs-display); line-height: var(--lh-display); letter-spacing: -.01em; }
+#sel-intro .lead { max-width: 640px; font-weight: 400; font-size: var(--fs-lead); line-height: var(--lh-lead); color: var(--c-muted); }
 #sel-intro .stats { align-self: stretch; display: flex; gap: 16px; }
 #sel-intro .stat { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; padding: 16px 20px; border-radius: 8px; background: var(--c-surface); white-space: nowrap; }
 #sel-intro .stat b { font-size: 24px; line-height: 32px; }
-#sel-intro .stat span { font-size: 14px; line-height: 20px; color: var(--c-muted); }
+#sel-intro .stat > span { font-size: 14px; line-height: 20px; color: var(--c-muted); }
 @media (max-width: 767px) {
   #sel-intro .container { gap: 16px; padding: 20px 16px 24px; }
-  #sel-intro h1 { font-weight: 400; }
+  #sel-intro .eyebrow { font-size: 12px; line-height: 16px; }
   #sel-intro .stats { flex-direction: column; gap: 8px; }
   #sel-intro .stat { flex-direction: row; align-items: center; gap: 12px; padding: 12px 20px; }
   #sel-intro .stat b { font-size: 20px; line-height: 28px; }
-  #sel-intro .stat span { font-size: 12px; line-height: 16px; }
+  #sel-intro .stat > span { font-size: 12px; line-height: 16px; }
 }
 
-/* === Карточки подборки (blocks/selection/cards.html) === */
+/* === Карточки подборки (blocks/selection/cards.html) — B3.3: .card каталога + кнопки; 4 / 3 / 2 / 1 в ряд, ряд одной высоты === */
 #sel-cards .container { padding-top: 16px; padding-bottom: 48px; }
-#sel-cards .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; }
-.sel-card { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--c-border-input); border-radius: 12px;
-  background: var(--c-white); box-shadow: 0 4px 16px var(--c-shadow-card); }
+#sel-cards .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 21px; align-items: stretch; }
+.sel-card.card { width: auto; }
+.sel-card .card__body { flex: 1; }
 .js-sel-open { cursor: pointer; }
-.sel-card__photo { position: relative; height: 240px; }
-.sel-card__photo > img { width: 100%; height: 100%; object-fit: cover; }
-.sel-card .chip { position: absolute; left: 12px; top: 12px; padding: 4px 10px; border-radius: 12px; background: var(--c-white);
-  font-size: var(--fs-caption); line-height: var(--lh-caption); white-space: nowrap; }
-.sel-card__body { display: flex; flex-direction: column; gap: 12px; padding: 20px; }
-.sel-card__price { font-weight: 700; font-size: 24px; line-height: 32px; white-space: nowrap; }
-.sel-card__title { font-weight: 700; font-size: 16px; line-height: 24px; }
-.sel-card__addr { font-size: var(--fs-caption); line-height: var(--lh-caption); color: var(--c-light); }
-.sel-card__stats { display: flex; gap: 8px; padding: 12px 0; border-top: 1px solid var(--c-border-input); border-bottom: 1px solid var(--c-border-input); }
-.sel-card__stats > div { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
-.sel-card__stats span { font-size: var(--fs-caption); line-height: var(--lh-caption); color: var(--c-light); white-space: nowrap; }
-.sel-card__stats b { font-size: 16px; line-height: 24px; }
-.sel-card__reason { display: flex; flex-direction: column; gap: 2px; }
-.sel-card__reason span { font-size: var(--fs-caption); line-height: var(--lh-caption); }
-.sel-card__reason p { font-size: 14px; line-height: 20px; color: var(--c-muted); }
-/* Архив: серый фон, затемнённое фото с плашкой, текст светлый */
-.sel-card--archive { background: var(--c-page); box-shadow: none; }
-.sel-card--archive .archive { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+/* Заголовок — до 2 строк, адрес и метро — 1 строка с «…» */
+.sel-card .card__title { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.sel-card .card__meta-row span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* Цены — колонки по содержимому; длинная цена уводит вторую на новую строку */
+.sel-card .card__prices { flex-wrap: wrap; gap: 4px 16px; }
+.sel-card .card__prices > div { flex: none; }
+.sel-card__actions { display: flex; flex-direction: column; gap: 8px; margin-top: auto; padding-top: 8px; }
+/* Архив: слой на фото, текст карточки приглушён */
+.sel-card--archive .card__img > img { width: 100%; height: 100%; object-fit: cover; }
+.sel-card--archive .archive { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
   background: var(--c-dim-strong); color: var(--c-white); font-size: var(--fs-caption); line-height: var(--lh-caption); }
-.sel-card--archive .pill { padding: 6px 14px; border: 1px solid var(--c-glass-border); border-radius: 20px; background: var(--c-glass);
-  font-weight: 700; font-size: 16px; line-height: 24px; }
-.sel-card__status { font-weight: 700; font-size: 16px; line-height: 24px; color: var(--c-muted); }
-.sel-card--archive .sel-card__title, .sel-card--archive .sel-card__stats span, .sel-card--archive .sel-card__stats b { color: var(--c-light); }
+.sel-card--archive .archive b { font-size: var(--fs-subtitle); line-height: var(--lh-subtitle); }
+.sel-card--archive .card__tags, .sel-card--archive .card__title, .sel-card--archive .card__prices, .sel-card--archive .card__meta { opacity: .45; }
 #sel-cards .note { margin-top: 24px; font-size: var(--fs-caption); line-height: var(--lh-caption); color: var(--c-light); }
-@media (max-width: 1279px) { #sel-cards .grid { gap: 16px; } }
+@media (max-width: 1279px) { #sel-cards .grid { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
 @media (max-width: 991px) { #sel-cards .grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 767px) {
   #sel-cards .container { padding: 8px 16px 24px; }
   #sel-cards .grid { grid-template-columns: 1fr; }
-  .sel-card__photo { height: 220px; }
-  .sel-card__price { font-size: 20px; line-height: 28px; }
-  .sel-card__reason p { font-size: 12px; line-height: 16px; }
+  .sel-card .card__img { height: auto; aspect-ratio: 296 / 197; }
   #sel-cards .note { margin-top: 16px; }
 }
 
 /* === «Обсудим подборку?» (blocks/selection/broker.html) — текст слева, фото брокера справа; < 992 — фото сверху === */
 #sel-broker .container { display: flex; flex-direction: column; gap: 16px; padding-top: 40px; padding-bottom: 24px; }
-#sel-broker .broker-card { position: relative; display: flex; overflow: hidden; border: 1px solid var(--c-border-input); border-radius: 16px; background: var(--c-white); }
-#sel-broker .decor { position: absolute; top: -1px; right: -1px; width: 900px; height: 541px; pointer-events: none; }
+#sel-broker .broker-card { position: relative; display: flex; overflow: hidden; border-radius: 16px; background: var(--c-surface); }
+#sel-broker .decor { position: absolute; top: 0; right: 0; width: 900px; height: 541px; pointer-events: none; }
 #sel-broker .decor img { position: absolute; top: 0; height: 100%; opacity: .15; }
 #sel-broker .decor-1 { left: 292px; width: 692px; }
 #sel-broker .decor-2 { left: 0; width: 694px; }
 #sel-broker .decor .decor-m { display: none; }
-#sel-broker .content { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; width: 576px; flex: none; padding: 48px; }
-#sel-broker h2 { font-weight: 700; font-size: 32px; line-height: 40px; }
+#sel-broker .content { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; width: 645px; flex: none; padding: 48px; }
+#sel-broker h2 { font-weight: var(--fw-head); font-size: 32px; line-height: 40px; }
 #sel-broker .lead { font-size: 16px; line-height: 24px; color: var(--c-muted); }
 #sel-broker .name { display: flex; flex-direction: column; gap: 2px; }
 #sel-broker .name p { font-weight: 700; font-size: 24px; line-height: 32px; }
 #sel-broker .name span { font-size: 14px; line-height: 20px; color: var(--c-muted); }
 #sel-broker .contacts { display: flex; flex-wrap: wrap; gap: 12px 32px; white-space: nowrap; }
+@media (min-width: 1280px) { #sel-broker .contacts { flex-wrap: nowrap; } }
 #sel-broker .contacts div { display: flex; flex-direction: column; gap: 2px; }
 #sel-broker .contacts span, #sel-broker label { font-size: var(--fs-caption); line-height: var(--lh-caption); color: var(--c-light); }
 #sel-broker .contacts a { font-weight: 700; font-size: 16px; line-height: 24px; }
 #sel-broker .contacts a:hover { color: var(--c-accent); }
 #sel-broker .callback { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+#sel-broker .callback .input, #sel-broker .callback .btn { max-width: 480px; }
 #sel-broker .photo { position: relative; flex: 1; min-width: 0; }
-#sel-broker .photo img { position: absolute; top: 58px; left: calc(50% + .5px); transform: translateX(-50%); width: 444px; max-width: none; }
+/* C3b: фото без фона 600×600 у правого края (за край на 40), голова у верха; слева мягкий переход в фон карточки */
+#sel-broker .photo img { position: absolute; top: -20px; right: -40px; width: 600px; max-width: none; }
+#sel-broker .photo::after { content: ''; position: absolute; top: 0; bottom: 0; left: calc(100% + 40px - 600px); width: 150px; z-index: 1;
+  background: linear-gradient(90deg, var(--c-surface), transparent); }
 #sel-broker .bottom { font-size: var(--fs-caption); line-height: var(--lh-caption); color: var(--c-light); }
+/* 992–1279: карточка уже — текст 576, фото 420, чтобы не наезжало на текст */
+@media (max-width: 1279px) {
+  #sel-broker .content { width: 576px; }
+  #sel-broker .photo img { top: auto; bottom: 0; width: 420px; }
+  #sel-broker .photo::after { left: calc(100% + 40px - 420px); }
+}
 @media (max-width: 991px) {
   #sel-broker .broker-card { flex-direction: column; }
   #sel-broker .photo { order: -1; flex: none; height: 300px; overflow: hidden; }
-  #sel-broker .photo img { top: 21.6px; left: calc(50% - 21px); width: 340px; }
+  #sel-broker .photo img { top: 0; bottom: auto; right: auto; left: 50%; transform: translateX(-50%); width: 340px; }
+  #sel-broker .photo::after { top: auto; left: 0; right: 0; width: auto; height: 60px; background: linear-gradient(0deg, var(--c-surface), transparent); }
   #sel-broker .decor { top: 0; right: -40px; width: 604px; height: 330px; }
   #sel-broker .decor .decor-1, #sel-broker .decor .decor-2 { display: none; }
   #sel-broker .decor .decor-m { display: block; left: 0; width: 100%; opacity: 1; }
@@ -788,7 +803,7 @@ html:has(#sel-header) { scroll-padding-top: 0; }
 @media (max-width: 767px) {
   #sel-broker .container { padding: 24px 16px 16px; }
   #sel-broker .content { gap: 16px; padding: 24px 20px; }
-  #sel-broker h2 { font-weight: 400; font-size: 24px; line-height: 32px; }
+  #sel-broker h2 { font-size: 24px; line-height: 32px; }
   #sel-broker .name p { font-size: 20px; line-height: 28px; }
   #sel-broker .name span { font-size: 12px; line-height: 16px; }
   #sel-broker .contacts { flex-direction: column; gap: 12px; }
@@ -840,12 +855,12 @@ html:has(#sel-header) { scroll-padding-top: 0; }
 .modal__form { display: grid; grid-template-columns: 410px 1fr; column-gap: 40px; row-gap: 16px; align-items: start; }
 .modal__form > :not(.modal__aside) { grid-column: 1; }
 .modal__aside { grid-column: 2; grid-row: 1 / span 5; align-self: stretch; }
-.modal__head h2 { font-weight: 700; font-size: 24px; line-height: 1.1; color: var(--c-text); }
+.modal__head h2 { font-weight: var(--fw-head); font-size: 24px; line-height: 1.1; color: var(--c-text); }
 .modal__head p { margin-top: 12px; font-size: 15px; line-height: 18px; color: var(--c-text-2); }
 .modal__fields { display: flex; flex-direction: column; gap: 12px; }
 .modal__submit { height: 52px; font-size: 15px; letter-spacing: .46px; text-transform: uppercase; }
 .input--area { height: 100px; padding: 12px 16px; resize: vertical; }
-.consent { font-size: 13px; line-height: 1.2; color: var(--c-text-2); }
+.consent { font-weight: 400; font-size: 13px; line-height: 16px; color: var(--c-text-2); }
 .consent a { color: var(--c-link); }
 /* Карточка объекта в окне (сайт: колонка на сером фоне) */
 .obj-card { height: 100%; overflow: hidden; border-radius: 4px; background: var(--c-surface); }
@@ -878,7 +893,7 @@ html:has(#sel-header) { scroll-padding-top: 0; }
 .modal--success .modal__box { max-width: 608px; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 40px; text-align: center; }
 .success-icon { width: 96px; height: 96px; margin-bottom: 4px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--c-accent-10); }
 .success-icon img { width: 40px; height: 40px; }
-.modal--success h2 { font-weight: 700; font-size: 24px; line-height: 1.1; }
+.modal--success h2 { font-weight: var(--fw-head); font-size: 24px; line-height: 1.1; }
 .modal--success p { font-size: 15px; line-height: 18px; color: var(--c-text-2); }
 @media (max-width: 991px) { .modal__form { grid-template-columns: 1fr 260px; column-gap: 24px; } }
 @media (max-width: 767px) {
@@ -917,13 +932,15 @@ body:has(#viewers-toast:not([hidden])) #tg-plaque { top: 201px; }
 #tg-plaque button::before, #tg-plaque button::after { content: ''; position: absolute; left: 0; top: 9px; width: 20px; height: 2px; background: var(--c-white); transform: rotate(45deg); }
 #tg-plaque button::after { transform: rotate(-45deg); }
 @media (max-width: 767px) {
-  #tg-plaque, body:has(#viewers-toast:not([hidden])) #tg-plaque { top: auto; bottom: 10px; left: 10px; right: 10px; width: auto; padding: 10px 40px 10px 15px; }
-  body:has(#sticky-actions.is-shown) #tg-plaque { bottom: 136px; }
+  /* Телефон: сверху под шапкой, как уведомление (дирижёр 16.10; на сайте — снизу, но там теперь закреплённые кнопки) */
+  #tg-plaque, body:has(#viewers-toast:not([hidden])) #tg-plaque { top: calc(var(--header-h) + 10px); left: 10px; right: 10px; width: auto; padding: 10px 40px 10px 15px; }
 }
 
 /* === Квиз «Ищете помещение на покупку?» (blocks/object/quiz.html) — сайт: .min-quiz === */
 #quiz { position: fixed; right: 20px; bottom: 20px; z-index: 1500; padding: 10px; max-width: calc(100vw - 20px); }
 #quiz[hidden] { display: none; }
+/* На телефоне квиз не показываем — места нет (дирижёр 16.10) */
+@media (max-width: 767px) { #quiz { display: none !important; } }
 #quiz { animation: fade-in .4s ease-out; }
 .quiz__box { width: 540px; max-width: 100%; padding: 20px 20px 25px; background: var(--c-quiz); border-radius: 24px 0 24px 0;
   clip-path: polygon(0 0, calc(100% - 44px) 0, 100% 44px, 100% 100%, 44px 100%, 0 calc(100% - 44px)); }
@@ -950,10 +967,6 @@ body:has(#viewers-toast:not([hidden])) #tg-plaque { top: 201px; }
   .quiz__title { font-size: 26px; }
   .quiz__row { flex-direction: column; }
 }
-
-/* Кнопка «Задать вопрос» (Telegram брокеру) — синяя */
-.btn--telegram { background: var(--c-telegram); color: var(--c-white); }
-.btn--telegram:hover { opacity: .85; }
 
 /* Текст футера свёрнут по высоте, клик раскрывает (сайт: .js-footer-text) */
 #footer .footer-about { max-height: 200px; overflow: hidden; cursor: pointer; transition: max-height 5s; }

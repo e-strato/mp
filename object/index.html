@@ -201,22 +201,20 @@
   </div>
 </div>
 <div id="contact">
-  <!-- С менеджером — брокер по объекту; без менеджера — отдел продаж (?manager=no) -->
+  <!-- Вся колонка связи — одна светлая карточка (решение 7, D13.4). С менеджером — брокер по объекту; без менеджера — отдел продаж (?manager=no) -->
   <div class="agent if-manager">
     <img class="agent-photo" src="../img/contact/broker-andrey.png" alt="Андрей" />
     <div><p class="agent-role">Брокер по объекту</p><p class="agent-name">Андрей</p></div>
   </div>
-  <!-- «Задать вопрос» — как на сайте: Telegram брокеру с готовым текстом; ссылка пока заглушка (решение 5) -->
-  <a class="btn btn--block btn--telegram if-manager" href="#"><img src="../img/site/telegram.svg" alt="" />Задать вопрос</a>
   <div class="agent if-no-manager">
     <span class="agent-logo"><img src="../img/brand/mark.svg" alt="" /></span>
     <div><p class="agent-role">Отдел продаж</p><p class="agent-name">Malina Property</p></div>
   </div>
-  <div class="actions js-contact-actions">
+  <div class="actions">
     <a class="btn btn--primary btn--block" href="#" data-modal="m-view"><img src="../img/icons/view.svg" alt="" />Хочу посмотреть</a>
     <a class="btn btn--outline btn--block" href="#" data-modal="m-price"><img src="../img/icons/rub.svg" alt="" />Предложить цену</a>
   </div>
-  <div class="dark-panel">
+  <div class="connect">
     <h3>Свяжитесь удобным способом</h3>
     <div class="messengers">
       <a class="m-whatsapp" href="#" aria-label="WhatsApp"><img src="../img/icons/whatsapp-white.svg" alt="" /></a>
@@ -225,8 +223,8 @@
     </div>
     <form class="callback js-phone-form">
       <input class="input input--lg js-phone" type="tel" placeholder="+7-___-___-__-__" aria-label="Телефон" />
-      <button class="btn btn--primary btn--block" type="submit">Перезвоните мне</button>
-      <p class="consent consent--dark">При нажатии на кнопку «Перезвоните мне» вы даете согласие на обработку персональных данных на условиях и целях определенных <a href="#">Соглашением</a></p>
+      <button class="btn btn--primary" type="submit">Перезвоните мне</button>
+      <p class="consent">При нажатии на кнопку «Перезвоните мне» вы даете согласие на обработку персональных данных на условиях и целях определенных <a href="#">Соглашением</a></p>
     </form>
   </div>
 </div>
@@ -322,17 +320,16 @@
     <div class="dots js-carousel-dots" aria-label="Страницы"></div>
   </div>
 </section>
+<!-- Как «Обсудим подборку?» (решение 7, H): серая карточка, знак-полосы, фото брокера без фона; с менеджером — фото брокера без фона, без менеджера — логотип -->
 <section id="lead">
   <div class="container">
     <div class="lead-card">
       <div class="decor"><img src="../img/lead/decor.svg" alt="" /></div>
+      <div class="photo if-manager"><img src="../img/selection/broker-dmitriy.png" alt="" /></div>
+      <img class="logo if-no-manager" src="../img/brand/logo-dark.svg" alt="Малина Проперти" />
       <div class="content">
         <h2>Подберем для вас подходящие варианты.</h2>
         <p class="lead-text">Оставьте заявку, брокер подберет подходящие объекты всего за 5-10 минут и сэкономит до 80% вашего времени</p>
-        <!-- Телефон: брокер (с менеджером) или логотип (без) — между текстом и формой -->
-        <img class="broker-photo-m if-manager" src="../img/lead/broker-vitaliy-m.png" alt="Виталий" />
-        <p class="broker-m if-manager"><b>Виталий</b><span>Брокер по работе с клиентами</span></p>
-        <img class="wordmark-m if-no-manager" src="../img/brand/wordmark.svg" alt="Malina Property" />
         <form class="js-lead-form">
           <div class="inputs">
             <input class="input js-req" type="text" placeholder="Ваше имя" aria-label="Ваше имя" />
@@ -342,9 +339,6 @@
           <p class="consent">При нажатии на кнопку «Отправить заявку» вы даете согласие на обработку персональных данных на условиях и целях определенных <a href="#">Соглашением</a></p>
         </form>
       </div>
-      <img class="broker-photo if-manager" src="../img/lead/broker-vitaliy.png" alt="Виталий" />
-      <div class="broker if-manager"><p class="broker-name">Виталий</p><p class="broker-role">Брокер по работе с клиентами</p></div>
-      <img class="wordmark if-no-manager" src="../img/brand/wordmark.svg" alt="Malina Property" />
     </div>
   </div>
 </section>
