@@ -1,0 +1,17 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="106" height="8" viewBox="0 0 106 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Dots" clip-path="url(#clip0_0_516)">
+<circle id="Ellipse" cx="4" cy="4" r="3.5" fill="#FF3B3B" stroke="#3E3F42"/>
+<circle id="Ellipse_2" cx="18" cy="4" r="3.5" fill="white" stroke="#3E3F42"/>
+<circle id="Ellipse_3" cx="32" cy="4" r="3.5" fill="white" stroke="#3E3F42"/>
+<circle id="Ellipse_4" cx="46" cy="4" r="3.5" fill="white" stroke="#3E3F42"/>
+<circle id="Ellipse_5" cx="60" cy="4" r="3.5" fill="white" stroke="#3E3F42"/>
+<circle id="Ellipse_6" cx="74" cy="4" r="3.5" fill="white" stroke="#3E3F42"/>
+<circle id="Ellipse_7" cx="88" cy="4" r="3.5" fill="white" stroke="#3E3F42"/>
+<circle id="Ellipse_8" cx="102" cy="4" r="3.5" fill="white" stroke="#3E3F42"/>
+</g>
+<defs>
+<clipPath id="clip0_0_516">
+<rect width="106" height="8" fill="white"/>
+</clipPath>
+</defs>
+</svg>
