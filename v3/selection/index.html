@@ -1,0 +1,1017 @@
+<!doctype html>
+<!--
+  Malina Property — каркас страницы.
+  ⚠️ *.html в корне website/ СГЕНЕРИРОВАНЫ: этот каркас + pages/<имя>.html + blocks/**/*.html → `node build.mjs`.
+  Правьте блоки, страницы и layout.html, не собранные файлы (гейт `node build.mjs --check` поймает ручную правку).
+-->
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Подборка для вас — Malina Property</title>
+<link rel="preload" href="../fonts/gilroy-medium.woff" as="font" type="font/woff" crossorigin />
+<link rel="preload" href="../fonts/gilroy-bold.woff" as="font" type="font/woff" crossorigin />
+<link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+<main>
+<header id="sel-header">
+  <div class="container">
+    <a class="logo" href="../selection/" aria-label="Malina Property"><img src="../img/brand/logo-dark.svg" alt="Malina Property" /></a>
+    <span class="spacer"></span>
+    <div class="broker hide-mobile"><p class="broker-name">Валерий Алексеев</p><p class="broker-role">Ваш брокер</p></div>
+    <a class="btn btn--select" href="#sel-broker">Связаться</a>
+  </div>
+</header>
+<section id="sel-intro">
+  <div class="container">
+    <p class="eyebrow">Личная подборка</p>
+    <h1>Помещения с арендаторами<br /> под ваш запрос</h1>
+    <p class="lead">Собрал варианты в Москве и области. Посмотрите расположение, арендаторов и условия — затем обсудим, что стоит посмотреть лично.</p>
+    <div class="stats">
+      <div class="stat"><b><span class="hide-mobile">8</span><span class="only-mobile">6</span></b><span>объектов в подборке</span></div>
+      <div class="stat"><b>от 22,5 млн ₽</b><span>стоимость</span></div>
+      <div class="stat"><b>от 9,4 лет</b><span>окупаемость</span></div>
+    </div>
+  </div>
+</section>
+<!-- Карточка подборки = .card каталога (blocks/object/similar.html) + кнопки; ряд — одной высоты.
+     «Интересно» / «Неинтересно» — выбор по объекту (нажатая — aria-pressed). Клик по карточке — окно объекта. -->
+<section id="sel-cards">
+  <div class="container">
+    <div class="grid">
+      <article class="card sel-card js-sel-open" data-obj="1" tabindex="0">
+        <div class="card__img js-slider-view">
+          <div class="slides js-slides"><img src="../img/selection/obj-1/1.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-1/2.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-1/3.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-1/4.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-1/5.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-1/6.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-1/7.jpg" alt="" loading="lazy" draggable="false" /></div>
+          <button class="card__arrow card__prev js-prev" type="button" aria-label="Предыдущее фото"><img src="../img/site/arrow-left.svg" alt="" /></button>
+          <button class="card__arrow card__next js-next" type="button" aria-label="Следующее фото"><img src="../img/site/arrow-right.svg" alt="" /></button>
+          <div class="card__dots js-card-dots"></div>
+        </div>
+        <div class="card__body">
+          <div class="card__tags"><span class="tag"><span class="tag__body">Окупаемость: 9.9 лет</span><img class="tag__tail" src="../img/icons/tag-tail.svg" alt="" /></span><span class="tag"><span class="tag__body">Доход: 190 000 р/мес</span><img class="tag__tail" src="../img/icons/tag-tail.svg" alt="" /></span></div>
+          <p class="card__title">Продажа помещения с арендатором на Феодосийской</p>
+          <div class="card__prices"><div><span class="card__price-label">Цена:</span><span class="card__price"><b>22 500 000</b><span class="rub">₽</span></span></div><div><span class="card__price-label">Цена за м2:</span><span class="card__price"><b>218 446</b><span class="rub">₽</span></span></div></div>
+          <div class="card__meta">
+            <p class="card__meta-row"><img src="../img/icons/pin.svg" alt="" /><span>Москва, Феодосийская ул., д. 7, к. 6</span></p>
+            <p class="card__meta-row"><img src="../img/icons/metro.svg" alt="" /><span>Улица Старокачаловская (11 мин.)</span></p>
+            <p class="card__meta-row"><img src="../img/icons/area.svg" alt="" /><span>Площадь - 103 м2</span></p>
+          </div>
+          <div class="sel-card__actions">
+            <button class="btn btn--outline btn--yes btn--block js-choice" type="button" aria-pressed="false">Интересно</button>
+            <button class="btn btn--quiet btn--no btn--block js-choice" type="button" aria-pressed="false">Неинтересно</button>
+          </div>
+        </div>
+      </article>
+      <article class="card sel-card js-sel-open" data-obj="2" tabindex="0">
+        <div class="card__img js-slider-view">
+          <div class="slides js-slides"><img src="../img/selection/obj-2/1.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-2/2.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-2/3.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-2/4.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-2/5.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-2/6.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-2/7.jpg" alt="" loading="lazy" draggable="false" /></div>
+          <button class="card__arrow card__prev js-prev" type="button" aria-label="Предыдущее фото"><img src="../img/site/arrow-left.svg" alt="" /></button>
+          <button class="card__arrow card__next js-next" type="button" aria-label="Следующее фото"><img src="../img/site/arrow-right.svg" alt="" /></button>
+          <div class="card__dots js-card-dots"></div>
+        </div>
+        <div class="card__body">
+          <div class="card__tags"><span class="tag"><span class="tag__body">Окупаемость: 12 лет</span><img class="tag__tail" src="../img/icons/tag-tail.svg" alt="" /></span><span class="tag"><span class="tag__body">Доход: 250 000 р/мес</span><img class="tag__tail" src="../img/icons/tag-tail.svg" alt="" /></span></div>
+          <p class="card__title">Продажа помещения с арендаторами в Люберцах</p>
+          <div class="card__prices"><div><span class="card__price-label">Цена:</span><span class="card__price"><b>36 000 000</b><span class="rub">₽</span></span></div><div><span class="card__price-label">Цена за м2:</span><span class="card__price"><b>208 092</b><span class="rub">₽</span></span></div></div>
+          <div class="card__meta">
+            <p class="card__meta-row"><img src="../img/icons/pin.svg" alt="" /><span>Люберцы, рп Октябрьский, ул. Ленина, д. 25</span></p>
+            <p class="card__meta-row"><img src="../img/icons/metro.svg" alt="" /><span>Котельники (15 мин.)</span></p>
+            <p class="card__meta-row"><img src="../img/icons/area.svg" alt="" /><span>Площадь - 173 м2</span></p>
+          </div>
+          <div class="sel-card__actions">
+            <button class="btn btn--outline btn--yes btn--block js-choice" type="button" aria-pressed="false">Интересно</button>
+            <button class="btn btn--quiet btn--no btn--block js-choice" type="button" aria-pressed="false">Неинтересно</button>
+          </div>
+        </div>
+      </article>
+      <article class="card sel-card js-sel-open" data-obj="3" tabindex="0">
+        <div class="card__img js-slider-view">
+          <div class="slides js-slides"><img src="../img/selection/obj-3/1.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-3/2.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-3/3.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-3/4.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-3/5.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-3/6.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-3/7.jpg" alt="" loading="lazy" draggable="false" /></div>
+          <button class="card__arrow card__prev js-prev" type="button" aria-label="Предыдущее фото"><img src="../img/site/arrow-left.svg" alt="" /></button>
+          <button class="card__arrow card__next js-next" type="button" aria-label="Следующее фото"><img src="../img/site/arrow-right.svg" alt="" /></button>
+          <div class="card__dots js-card-dots"></div>
+        </div>
+        <div class="card__body">
+          <div class="card__tags"><span class="tag"><span class="tag__body">Окупаемость: 11.7 лет</span><img class="tag__tail" src="../img/icons/tag-tail.svg" alt="" /></span><span class="tag"><span class="tag__body">Доход: 257 167 р/мес</span><img class="tag__tail" src="../img/icons/tag-tail.svg" alt="" /></span></div>
+          <p class="card__title">Продажа помещения с банком у метро Менделеевская</p>
+          <div class="card__prices"><div><span class="card__price-label">Цена:</span><span class="card__price"><b>36 000 000</b><span class="rub">₽</span></span></div><div><span class="card__price-label">Цена за м2:</span><span class="card__price"><b>2 250 000</b><span class="rub">₽</span></span></div></div>
+          <div class="card__meta">
+            <p class="card__meta-row"><img src="../img/icons/pin.svg" alt="" /><span>Москва, Новослободская ул., д. 19, стр. 1</span></p>
+            <p class="card__meta-row"><img src="../img/icons/metro.svg" alt="" /><span>Менделеевская (3 мин.)</span></p>
+            <p class="card__meta-row"><img src="../img/icons/area.svg" alt="" /><span>Площадь - 16 м2</span></p>
+          </div>
+          <div class="sel-card__actions">
+            <button class="btn btn--outline btn--yes btn--block js-choice" type="button" aria-pressed="false">Интересно</button>
+            <button class="btn btn--quiet btn--no btn--block js-choice" type="button" aria-pressed="false">Неинтересно</button>
+          </div>
+        </div>
+      </article>
+      <article class="card sel-card js-sel-open" data-obj="4" tabindex="0">
+        <div class="card__img js-slider-view">
+          <div class="slides js-slides"><img src="../img/selection/obj-4/1.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-4/2.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-4/3.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-4/4.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-4/5.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-4/6.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-4/7.jpg" alt="" loading="lazy" draggable="false" /></div>
+          <button class="card__arrow card__prev js-prev" type="button" aria-label="Предыдущее фото"><img src="../img/site/arrow-left.svg" alt="" /></button>
+          <button class="card__arrow card__next js-next" type="button" aria-label="Следующее фото"><img src="../img/site/arrow-right.svg" alt="" /></button>
+          <div class="card__dots js-card-dots"></div>
+        </div>
+        <div class="card__body">
+          <div class="card__tags"><span class="tag"><span class="tag__body">Окупаемость: 12.5 лет</span><img class="tag__tail" src="../img/icons/tag-tail.svg" alt="" /></span><span class="tag"><span class="tag__body">Доход: 500 000 р/мес</span><img class="tag__tail" src="../img/icons/tag-tail.svg" alt="" /></span></div>
+          <p class="card__title">Продажа арендного бизнеса у метро Нагорная</p>
+          <div class="card__prices"><div><span class="card__price-label">Цена:</span><span class="card__price"><b>75 000 000</b><span class="rub">₽</span></span></div><div><span class="card__price-label">Цена за м2:</span><span class="card__price"><b>862 069</b><span class="rub">₽</span></span></div></div>
+          <div class="card__meta">
+            <p class="card__meta-row"><img src="../img/icons/pin.svg" alt="" /><span>Москва, Электролитный пр., д. 7А/1</span></p>
+            <p class="card__meta-row"><img src="../img/icons/metro.svg" alt="" /><span>Нагорная (7 мин.)</span></p>
+            <p class="card__meta-row"><img src="../img/icons/area.svg" alt="" /><span>Площадь - 87 м2</span></p>
+          </div>
+          <div class="sel-card__actions">
+            <button class="btn btn--outline btn--yes btn--block js-choice" type="button" aria-pressed="false">Интересно</button>
+            <button class="btn btn--quiet btn--no btn--block js-choice" type="button" aria-pressed="false">Неинтересно</button>
+          </div>
+        </div>
+      </article>
+      <article class="card sel-card js-sel-open" data-obj="5" tabindex="0">
+        <div class="card__img js-slider-view">
+          <div class="slides js-slides"><img src="../img/selection/obj-5/1.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-5/2.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-5/3.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-5/4.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-5/5.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-5/6.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/selection/obj-5/7.jpg" alt="" loading="lazy" draggable="false" /></div>
+          <button class="card__arrow card__prev js-prev" type="button" aria-label="Предыдущее фото"><img src="../img/site/arrow-left.svg" alt="" /></button>
+          <button class="card__arrow card__next js-next" type="button" aria-label="Следующее фото"><img src="../img/site/arrow-right.svg" alt="" /></button>
+          <div class="card__dots js-card-dots"></div>
+        </div>
+        <div class="card__body">
+          <div class="card__tags"><span class="tag"><span class="tag__body">Окупаемость: 9.4 лет</span><img class="tag__tail" src="../img/icons/tag-tail.svg" alt="" /></span><span class="tag"><span class="tag__body">Доход: 1 700 000 р/мес</span><img class="tag__tail" src="../img/icons/tag-tail.svg" alt="" /></span></div>
+          <p class="card__title">Продажа помещения с арендатором Магнит в ЖК «Остафьево»</p>
+          <div class="card__prices"><div><span class="card__price-label">Цена:</span><span class="card__price"><b>192 000 000</b><span class="rub">₽</span></span></div><div><span class="card__price-label">Цена за м2:</span><span class="card__price"><b>338 624</b><span class="rub">₽</span></span></div></div>
+          <div class="card__meta">
+            <p class="card__meta-row"><img src="../img/icons/pin.svg" alt="" /><span>Москва, ЖК «Остафьево», корп. 21</span></p>
+            <p class="card__meta-row"><img src="../img/icons/metro.svg" alt="" /><span>Щербинка (15 мин.)</span></p>
+            <p class="card__meta-row"><img src="../img/icons/area.svg" alt="" /><span>Площадь - 567 м2</span></p>
+          </div>
+          <div class="sel-card__actions">
+            <button class="btn btn--outline btn--yes btn--block js-choice" type="button" aria-pressed="false">Интересно</button>
+            <button class="btn btn--quiet btn--no btn--block js-choice" type="button" aria-pressed="false">Неинтересно</button>
+          </div>
+        </div>
+      </article>
+      <!-- 7 и 8 — как в Figma 1440; на телефоне в макете 6 карточек, эти две скрыты. Данных для окна объекта у них нет — окно не открывают -->
+      <article class="card sel-card hide-mobile">
+        <div class="card__img js-slider-view">
+          <div class="slides js-slides"><img src="../img/object/photo-1.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/object/thumb-2.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/object/thumb-3.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/object/thumb-4.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/object/thumb-5.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/object/thumb-6.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/object/thumb-7.jpg" alt="" loading="lazy" draggable="false" /></div>
+          <button class="card__arrow card__prev js-prev" type="button" aria-label="Предыдущее фото"><img src="../img/site/arrow-left.svg" alt="" /></button>
+          <button class="card__arrow card__next js-next" type="button" aria-label="Следующее фото"><img src="../img/site/arrow-right.svg" alt="" /></button>
+          <div class="card__dots js-card-dots"></div>
+        </div>
+        <div class="card__body">
+          <div class="card__tags"><span class="tag"><span class="tag__body">Окупаемость: 11.9 лет</span><img class="tag__tail" src="../img/icons/tag-tail.svg" alt="" /></span><span class="tag"><span class="tag__body">Доход: 526 000 р/мес</span><img class="tag__tail" src="../img/icons/tag-tail.svg" alt="" /></span></div>
+          <p class="card__title">Продажа помещения с сетевыми арендаторами в ЖК Бунинские Луга</p>
+          <div class="card__prices"><div><span class="card__price-label">Цена:</span><span class="card__price"><b>75 000 000</b><span class="rub">₽</span></span></div><div><span class="card__price-label">Цена за м2:</span><span class="card__price"><b>355 450</b><span class="rub">₽</span></span></div></div>
+          <div class="card__meta">
+            <p class="card__meta-row"><img src="../img/icons/pin.svg" alt="" /><span>г. Москва, ул Александры Монаховой, д. 98к1</span></p>
+            <p class="card__meta-row"><img src="../img/icons/metro.svg" alt="" /><span>Бунинская аллея (15 мин.)</span></p>
+            <p class="card__meta-row"><img src="../img/icons/area.svg" alt="" /><span>Площадь - 211 м2</span></p>
+          </div>
+          <div class="sel-card__actions">
+            <button class="btn btn--outline btn--yes btn--block js-choice" type="button" aria-pressed="false">Интересно</button>
+            <button class="btn btn--quiet btn--no btn--block js-choice" type="button" aria-pressed="false">Неинтересно</button>
+          </div>
+        </div>
+      </article>
+      <article class="card sel-card hide-mobile">
+        <div class="card__img js-slider-view">
+          <div class="slides js-slides"><img src="../img/similar/offer-2.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/site/similar-2/1.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/site/similar-2/2.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/site/similar-2/3.jpg" alt="" loading="lazy" draggable="false" /><img src="../img/site/similar-2/4.jpg" alt="" loading="lazy" draggable="false" /></div>
+          <button class="card__arrow card__prev js-prev" type="button" aria-label="Предыдущее фото"><img src="../img/site/arrow-left.svg" alt="" /></button>
+          <button class="card__arrow card__next js-next" type="button" aria-label="Следующее фото"><img src="../img/site/arrow-right.svg" alt="" /></button>
+          <div class="card__dots js-card-dots"></div>
+        </div>
+        <div class="card__body">
+          <div class="card__tags"><span class="tag"><span class="tag__body">Окупаемость: 9.6 лет</span><img class="tag__tail" src="../img/icons/tag-tail.svg" alt="" /></span><span class="tag"><span class="tag__body">Доход: 650 000 р/мес</span><img class="tag__tail" src="../img/icons/tag-tail.svg" alt="" /></span></div>
+          <p class="card__title">Продажа помещения с магазином Магнит</p>
+          <div class="card__prices"><div><span class="card__price-label">Цена:</span><span class="card__price"><b>75 000 000</b><span class="rub">₽</span></span></div><div><span class="card__price-label">Цена за м2:</span><span class="card__price"><b>375 000</b><span class="rub">₽</span></span></div></div>
+          <div class="card__meta">
+            <p class="card__meta-row"><img src="../img/icons/pin.svg" alt="" /><span>Москва, Салтыковская д.6/2к4</span></p>
+            <p class="card__meta-row"><img src="../img/icons/metro.svg" alt="" /><span>Улица Дмитриевского (30 мин.)</span></p>
+            <p class="card__meta-row"><img src="../img/icons/area.svg" alt="" /><span>Площадь - 200 м2</span></p>
+          </div>
+          <div class="sel-card__actions">
+            <button class="btn btn--outline btn--yes btn--block js-choice" type="button" aria-pressed="false">Интересно</button>
+            <button class="btn btn--quiet btn--no btn--block js-choice" type="button" aria-pressed="false">Неинтересно</button>
+          </div>
+        </div>
+      </article>
+      <!-- Объект в архиве: окно не открывает -->
+      <article class="card sel-card sel-card--archive">
+        <div class="card__img">
+          <img src="../img/selection/card-6.jpg" alt="" loading="lazy" />
+          <div class="archive"><b>Объект в архиве</b><span>Больше не предлагается</span></div>
+        </div>
+        <div class="card__body">
+          <div class="card__tags"><span class="tag"><span class="tag__body">Окупаемость: –</span><img class="tag__tail" src="../img/icons/tag-tail.svg" alt="" /></span><span class="tag"><span class="tag__body">Доход: –</span><img class="tag__tail" src="../img/icons/tag-tail.svg" alt="" /></span></div>
+          <p class="card__title">Продажа помещения с арендатором в ЖК «Пятницкие луга»</p>
+          <div class="card__prices"><div><span class="card__price-label">Цена:</span><span class="card__price"><b>39 000 000</b><span class="rub">₽</span></span></div><div><span class="card__price-label">Цена за м2:</span><span class="card__price"><b>253 247</b><span class="rub">₽</span></span></div></div>
+          <div class="card__meta">
+            <p class="card__meta-row"><img src="../img/icons/pin.svg" alt="" /><span>Химки, д. Юрлово, к. 1/2</span></p>
+            <p class="card__meta-row"><img src="../img/icons/metro.svg" alt="" /><span>Планерная (25 мин.)</span></p>
+            <p class="card__meta-row"><img src="../img/icons/area.svg" alt="" /><span>Площадь - 154 м2</span></p>
+          </div>
+          <div class="sel-card__actions">
+            <a class="btn btn--outline btn--block" href="#sel-broker">Подобрать похожее</a>
+            <button class="btn btn--quiet btn--no btn--block js-choice" type="button" aria-pressed="false">Неинтересно</button>
+          </div>
+        </div>
+      </article>
+    </div>
+    <p class="note">Окупаемость рассчитана по текущему арендному потоку, без учёта индексации и расходов. Условия каждого объекта уточню перед просмотром.</p>
+  </div>
+</section>
+<section id="sel-broker">
+  <div class="container">
+    <div class="broker-card">
+      <div class="decor" aria-hidden="true"><img class="decor-1" src="../img/selection/decor-1.svg" alt="" /><img class="decor-2" src="../img/selection/decor-2.svg" alt="" /><img class="decor-m" src="../img/selection/decor-m.svg" alt="" /></div>
+      <div class="content">
+        <h2>Обсудим подборку?</h2>
+        <p class="lead">Расскажу подробнее об объектах, уточню условия и помогу выбрать варианты для просмотра.</p>
+        <div class="name"><p>Валерий Алексеев</p><span>Ваш брокер по торговой недвижимости</span></div>
+        <div class="contacts">
+          <div><span>Рабочий телефон</span><a href="tel:+74953749077">+7 (495) 374-90-77</a></div>
+          <div><span>Мобильный телефон</span><a href="tel:+79000000000">+7 (900) 000-00-00</a></div>
+          <div><span>Электронная почта</span><a href="mailto:alexeev@malinaproperty.ru">alexeev@malinaproperty.ru</a></div>
+        </div>
+        <form class="callback js-phone-form">
+          <label for="sel-phone">Номер телефона</label>
+          <input id="sel-phone" class="input input--lg js-phone" type="tel" placeholder="+7-___-___-__-__" />
+          <button class="btn btn--primary btn--block" type="submit">Перезвоните мне</button>
+          <p class="consent">При нажатии на кнопку «Перезвоните мне» вы даете согласие на обработку персональных данных на условиях и целях определенных <a href="#">Соглашением</a></p>
+        </form>
+      </div>
+      <div class="photo"><img src="../img/selection/broker-dmitriy.png" alt="Валерий Алексеев" /></div>
+    </div>
+  </div>
+</section>
+<footer id="footer">
+  <div class="container">
+    <p class="footer-about">Компания Malina Property предлагает своим клиентам готовые решения по аренде или продаже недвижимости. Мы стремимся получить результат, идеально подходящий желаниям и потребностям наших клиентов. По аренде торговых помещений мы подготовили для клиентов готовые решения по аренде помещений под ресторан, под магазин и все возможные профили торговой недвижимости. Для инвесторов желающих приобрести торговую недвижимость, у нас есть услуга предброкериджа и более 1000 уже готовых решений по продаже арендного бизнеса. Также мы собрали все особняки в Москве и теперь аренда особняка или продажа особняка, задача которую вы реализуете с нами за пару дней. Консультанты Malina Property занимаются реализацией проектов по коммерческой недвижимости любой сложности в коротки сроки.</p>
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a href="../object/" aria-label="Malina Property"><img src="../img/brand/logo-white.svg" alt="Malina Property" /></a>
+        <p>Аренда и продажа<br />коммерческой недвижимости</p>
+      </div>
+      <nav class="footer-links"><a href="#">Карьера</a><a href="#">Новости</a></nav>
+      <nav class="footer-links"><a href="#">Контакты</a><a href="#">Продажа офиса</a><a href="#">Арендный бизнес</a></nav>
+      <nav class="footer-links"><a href="#">Аренда торговых помещений</a><a href="#">Продажа торговых помещений</a><a href="#">Аренда офиса</a></nav>
+      <span class="spacer"></span>
+      <a class="footer-phone" href="tel:+74953749077">+7 495 374 90 77</a>
+      <div class="footer-actions">
+        <a class="btn btn--sm btn--ghost-dark btn--accent-border" href="#" data-modal="m-podbor">Подбор объекта</a>
+        <a class="btn btn--sm btn--ghost-dark btn--plus" href="#"><img src="../img/icons/plus.svg" alt="" />Разместить объявление</a>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><img src="../img/icons/instagram.svg" alt="" /></a>
+          <a href="#" aria-label="Facebook"><img src="../img/icons/facebook.svg" alt="" /></a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-copy">© <span class="js-year">2026</span> MalinaProperty</p>
+  </div>
+</footer>
+<!-- Окно «Открытый объект»: клик по карточке подборки. Внутри — блоки страницы объекта; на телефоне — лист снизу -->
+<div id="sel-modal" class="layer js-sel-modal" hidden>
+  <div class="container">
+    <div class="sheet layer__box" role="dialog" aria-modal="true" aria-label="Объект">
+      <span class="handle" aria-hidden="true"></span>
+      <!-- Крестик прилипает к верху при прокрутке окна (sticky-обёртка высотой 0) -->
+      <div class="close-wrap"><button class="close js-sel-close" type="button" aria-label="Закрыть"><img src="../img/icons/close.svg" alt="" /></button></div>
+<section id="object-title">
+  <div class="container">
+    <div class="object-wrap">
+      <div class="mobile-actions">
+        <a class="icon-btn icon-btn--sm" href="#" aria-label="Назад"><img src="../img/icons/chevron-left.svg" alt="" /></a>
+        <button class="icon-btn icon-btn--sm js-favorite" type="button" aria-label="В избранное"><img src="../img/icons/favorite.svg" alt="" /></button>
+      </div>
+      <div class="title-row">
+        <h1>Продажа торгового помещения на Феодосийской</h1>
+        <p class="views">Просмотров: 4187</p>
+        <button class="icon-btn icon-btn--sm js-favorite" type="button" aria-label="В избранное"><img src="../img/icons/favorite.svg" alt="" /></button>
+      </div>
+      <div class="info-row">
+        <span class="tag"><span class="tag__body">Торговое помещение (лот 166571)</span><img class="tag__tail" src="../img/icons/tag-tail.svg" alt="" /></span>
+        <p class="address">г. Москва, ул. Феодосийская д. 7 корпус 6</p>
+        <p class="metro"><img src="../img/icons/metro.svg" alt="Метро" />Улица Старокачаловская (пешком 11 мин.)</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="object-main">
+  <div class="container">
+    <div class="object-wrap">
+      <div class="col-left">
+<div id="gallery" class="js-gallery">
+  <!-- Лента фото: первое — в разметке, остальные app.js строит по миниатюрам (data-src). Листается стрелками, миниатюрами, свайпом -->
+  <div class="photo js-slider-view">
+    <div class="slides js-slides"><img src="../img/selection/obj-1/1.jpg" alt="Торговое помещение на Феодосийской" draggable="false" /></div>
+    <span class="badge badge--teal g-torg js-torg" hidden>Торг</span>
+    <button class="icon-btn icon-btn--photo g-expand js-gallery-full" type="button" aria-label="Развернуть"><img src="../img/icons/expand.svg" alt="" /></button>
+    <button class="icon-btn icon-btn--photo g-prev js-prev" type="button" aria-label="Предыдущее фото"><img src="../img/icons/arrow-left.svg" alt="" /></button>
+    <button class="icon-btn icon-btn--photo g-next js-next" type="button" aria-label="Следующее фото"><img src="../img/icons/arrow-right.svg" alt="" /></button>
+  </div>
+  <div class="thumbs js-thumbs">
+    <button class="thumb" type="button" data-src="../img/selection/obj-1/1.jpg" aria-current="true" aria-label="Фото 1"><img src="../img/selection/obj-1/t1.jpg" alt="" /></button>
+    <button class="thumb" type="button" data-src="../img/selection/obj-1/2.jpg" aria-label="Фото 2"><img src="../img/selection/obj-1/t2.jpg" alt="" /></button>
+    <button class="thumb" type="button" data-src="../img/selection/obj-1/3.jpg" aria-label="Фото 3"><img src="../img/selection/obj-1/t3.jpg" alt="" /></button>
+    <button class="thumb" type="button" data-src="../img/selection/obj-1/4.jpg" aria-label="Фото 4"><img src="../img/selection/obj-1/t4.jpg" alt="" /></button>
+    <button class="thumb" type="button" data-src="../img/selection/obj-1/5.jpg" aria-label="Фото 5"><img src="../img/selection/obj-1/t5.jpg" alt="" /></button>
+    <button class="thumb" type="button" data-src="../img/selection/obj-1/6.jpg" aria-label="Фото 6"><img src="../img/selection/obj-1/t6.jpg" alt="" /></button>
+    <button class="thumb" type="button" data-src="../img/selection/obj-1/7.jpg" aria-label="Фото 7"><img src="../img/selection/obj-1/t7.jpg" alt="" /></button>
+  </div>
+  <!-- Полный экран — как на malinaproperty.ru: подложка, фото по центру, миниатюры под ним, справа панель объекта (заголовок,
+       тег, адрес, метро — копия из заголовка страницы), белый крестик. На телефоне — сплошной фон, без панели -->
+  <div class="g-full layer js-gallery-layer" role="dialog" aria-modal="true" aria-label="Фото объекта" hidden>
+    <div class="g-full__stage layer__box">
+      <!-- Рамка фото: лента обрезается по краю (overflow), а крестик висит снаружи угла -->
+      <div class="g-full__frame">
+      <div class="g-full__photo js-slider-view">
+        <div class="slides js-slides"></div>
+        <span class="badge badge--teal g-torg js-torg" hidden>Торг</span>
+        <button class="icon-btn g-full__arrow g-prev js-prev" type="button" aria-label="Предыдущее фото"><img src="../img/icons/arrow-left.svg" alt="" /></button>
+        <button class="icon-btn g-full__arrow g-next js-next" type="button" aria-label="Следующее фото"><img src="../img/icons/arrow-right.svg" alt="" /></button>
+      </div>
+        <button class="g-full__close js-gallery-close" type="button" aria-label="Закрыть"><img src="../img/icons/close.svg" alt="" /></button>
+      </div>
+      <div class="g-full__thumbs js-thumbs"></div>
+    </div>
+    <aside class="g-full__panel">
+      <h2 class="js-full-title"></h2>
+      <span class="tag"><span class="tag__body js-full-tag"></span><img class="tag__tail" src="../img/icons/tag-tail.svg" alt="" /></span>
+      <p class="g-full__address js-full-address"></p>
+      <p class="g-full__metro"><img src="../img/icons/metro.svg" alt="Метро" /><span class="js-full-metro"></span></p>
+      <a class="btn btn--primary" href="#" data-modal="m-view"><img src="../img/icons/eye-white.svg" alt="" />Хочу посмотреть</a>
+      <a class="btn btn--select" href="#" data-modal="m-price"><img src="../img/icons/rub-dark.svg" alt="" />Предложите цену</a>
+    </aside>
+  </div>
+</div>
+<div id="banners">
+  <a class="banner" href="#" data-modal="m-presentation">
+    <img class="b-lines" src="../img/banners/bg-lines.svg" alt="" />
+    <span class="b-icon b-icon--ring"><img src="../img/banners/download.svg" alt="" /></span>
+    <img class="b-cards" src="../img/banners/business-cards.png" alt="" />
+    <span class="b-text">Скачать<br />презентацию</span>
+  </a>
+  <a class="banner js-map" href="https://yandex.ru/maps/" target="_blank" rel="noopener">
+    <img class="b-lines" src="../img/banners/bg-lines.svg" alt="" />
+    <img class="b-icon" src="../img/banners/map-pin.svg" alt="" />
+    <span class="b-phone-wrap"><img class="b-phone" src="../img/banners/phone-map.png" alt="" /></span>
+    <img class="b-pin" src="../img/banners/location.png" alt="" />
+    <span class="b-text">Посмотреть<br />на карте</span>
+  </a>
+</div>
+<div id="description">
+  <p>Продажа торгового помещения 102,6 м2 на ул. Феодосийская, д. 7 корпус 6 (11 минут пешком от метро Улица Старокачаловская).</p>
+  <p>Помещение 102,6 м2 располагается на 1 этаже жилого дома, открытая планировка, два отдельных входа с фасада, высота потолка 3,5 м, витринные окна по фасаду. Электрическая мощность 21 кВт. Парковка перед фасадом. Место для размещения рекламы.</p>
+  <p>Помещение располагается в центре жилого массива. Интенсивный автомобильный и пешеходный трафик вдоль помещения.</p>
+  <p>Ранее располагался магазин "Вкусвилл".</p>
+  <p>Текущие арендаторы:<br />1. Яндекс маркет - 30 м2, ставка - 55 тыс/мес (с 01.27 - 60 тыс/мес);<br />2. Детская школа танцев - 51 м2, ставка - 100 тыс/мес;<br />3. Вакантная площадь - 16 м2, ставка 35 тыс/мес. Коммунальные платежи оплачиваются дополнительно.<br />Итого: 190 тыс/мес.</p>
+  <p>Стоимость 22,5 млн. рублей. Без комиссии.</p>
+</div>
+      </div>
+      <div class="col-right">
+<div id="price">
+  <div class="prices">
+    <div><p class="p-label">Цена объекта :</p><p class="p-value">22 500 000 <span class="rub">₽</span></p></div>
+    <div><p class="p-label">Цена за м2 :</p><p class="p-value">218 446 <span class="rub">₽</span></p></div>
+  </div>
+  <!-- «Уведомить о снижении цены» — как на сайте, без окна: нажатие раскрывает поле телефона, кнопка становится «Уведомить меня» -->
+  <form class="notify js-notify js-phone-form">
+    <button class="btn btn--primary btn--block" type="button" data-open="Уведомить меня"><img src="../img/icons/bell.svg" alt="" /><span>Уведомить о снижении цены</span></button>
+    <div class="notify__more">
+      <input class="input input--lg js-phone" type="tel" placeholder="Номер телефона" aria-label="Номер телефона" />
+      <p class="consent">При нажатии на кнопку «Уведомить меня» вы даете согласие на обработку персональных данных на условиях и целях определенных <a href="#">Соглашением</a></p>
+    </div>
+  </form>
+</div>
+<div id="params" class="kv">
+  <div class="kv__row"><img src="../img/icons/area.svg" alt="" /><span class="kv__key">Площадь</span><span class="kv__val">103 м2</span></div>
+  <div class="kv__row"><img src="../img/icons/floor.svg" alt="" /><span class="kv__key">Этаж</span><span class="kv__val">1</span></div>
+  <div class="kv__row"><img src="../img/icons/layout.svg" alt="" /><span class="kv__key">Планировка</span><span class="kv__val">Открытая</span></div>
+  <div class="kv__row"><img src="../img/icons/finish.svg" alt="" /><span class="kv__key">Отделка</span><span class="kv__val">За выездом арендатора</span></div>
+  <div class="kv__row"><img src="../img/icons/ceiling.svg" alt="" /><span class="kv__key">Высота потолков</span><span class="kv__val">3,5 м</span></div>
+  <div class="kv__row"><img src="../img/icons/power.svg" alt="" /><span class="kv__key">Мощность электроэнергии</span><span class="kv__val">21 кВт</span></div>
+  <div class="kv__row"><img src="../img/icons/parking.svg" alt="" /><span class="kv__key">Парковка</span><span class="kv__val">Перед фасадом</span></div>
+</div>
+<div id="tenant">
+  <h2 class="sec-title"><img src="../img/icons/chart.svg" alt="" />Информация по арендатору</h2>
+  <div class="kv kv--wide-pad">
+    <div class="kv__row"><span class="kv__key">Арендатор:</span><span class="kv__val">Управляющая компания</span></div>
+    <div class="kv__row"><span class="kv__key">Срок договора аренды от:</span><span class="kv__val">01.04.2026</span></div>
+    <div class="kv__row"><span class="kv__key">Срок договора аренды до:</span><span class="kv__val">01.04.2031</span></div>
+    <div class="kv__row"><span class="kv__key">Месячная арендная плата:</span><span class="kv__val">190 000 руб.</span></div>
+    <div class="kv__row"><span class="kv__key">Годовой арендный поток:</span><span class="kv__val">2 280 000 руб.</span></div>
+    <div class="kv__row"><span class="kv__key">Окупаемость:</span><span class="kv__val">9.9 лет (без учета индексации)</span></div>
+    <div class="kv__row"><span class="kv__key">Доходность</span><span class="kv__val">10.1% годовых</span></div>
+  </div>
+</div>
+<div id="terms">
+  <h2 class="sec-title"><img src="../img/icons/terms.svg" alt="" />Коммерческие условия</h2>
+  <div class="kv kv--wide-pad">
+    <div class="kv__row"><span class="kv__key">Цена за м2 :</span><span class="kv__val">218 446 руб</span></div>
+    <div class="kv__row"><span class="kv__key">Общая стоимость :</span><span class="kv__val">22 500 000 руб</span></div>
+    <div class="kv__row"><span class="kv__key">Комиссия:</span><span class="kv__val">Без комиссии</span></div>
+  </div>
+</div>
+<div id="contact">
+  <!-- Вся колонка связи — одна светлая карточка (решение 7, D13.4). С менеджером — брокер по объекту; без менеджера — отдел продаж (?manager=no) -->
+  <div class="agent if-manager">
+    <img class="agent-photo" src="../img/contact/broker-andrey.png" alt="Андрей" />
+    <div><p class="agent-role">Брокер по объекту</p><p class="agent-name">Андрей</p></div>
+  </div>
+  <div class="agent if-no-manager">
+    <span class="agent-logo"><img src="../img/brand/mark.svg" alt="" /></span>
+    <div><p class="agent-role">Отдел продаж</p><p class="agent-name">Malina Property</p></div>
+  </div>
+  <div class="actions">
+    <a class="btn btn--primary btn--block" href="#" data-modal="m-view"><img src="../img/icons/view.svg" alt="" />Хочу посмотреть</a>
+    <a class="btn btn--outline btn--block" href="#" data-modal="m-price"><img src="../img/icons/rub.svg" alt="" />Предложить цену</a>
+  </div>
+  <div class="connect">
+    <h3>Свяжитесь удобным способом</h3>
+    <div class="messengers">
+      <a class="m-whatsapp" href="#" aria-label="WhatsApp"><img src="../img/icons/whatsapp-white.svg" alt="" /></a>
+      <a class="m-telegram" href="#" aria-label="Telegram"><img src="../img/icons/telegram-white.svg" alt="" /></a>
+      <a class="m-max" href="#" aria-label="Max"><img src="../img/icons/max-white.svg" alt="" /></a>
+    </div>
+    <form class="callback js-phone-form">
+      <input class="input input--lg js-phone" type="tel" placeholder="+7-___-___-__-__" aria-label="Телефон" />
+      <button class="btn btn--primary" type="submit">Перезвоните мне</button>
+      <p class="consent">При нажатии на кнопку «Перезвоните мне» вы даете согласие на обработку персональных данных на условиях и целях определенных <a href="#">Соглашением</a></p>
+    </form>
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+    </div>
+  </div>
+</div>
+<!-- Объекты подборки для окна «Открытый объект» — реальные лоты malinaproperty.ru (url в поле url). Карточка → data-obj="n".
+     Фото — img/selection/obj-<n>/: 1…N.jpg (1200 px) и t1…tN.jpg (миниатюры). -->
+<script type="application/json" id="sel-objects">
+[
+ {
+  "n": 1,
+  "title": "Продажа торгового помещения на Феодосийской",
+  "type": "Торговое помещение (лот 166571)",
+  "address": "г. Москва, ул. Феодосийская , д. 7 корпус 6",
+  "metro": "Улица Старокачаловская (пешком 11 мин.)",
+  "views": 4145,
+  "price": "22 500 000",
+  "price_m2": "218 446",
+  "params": [
+   [
+    "Площадь",
+    "103 м2"
+   ],
+   [
+    "Этаж",
+    "1"
+   ],
+   [
+    "Планировка",
+    "Открытая"
+   ],
+   [
+    "Отделка",
+    "За выездом арендатора"
+   ],
+   [
+    "Высота потолков",
+    "3,5 м"
+   ],
+   [
+    "Мощность электроэнергии",
+    "21 кВт"
+   ],
+   [
+    "Парковка",
+    "Перед фасадом"
+   ]
+  ],
+  "tenant": [
+   [
+    "Арендатор",
+    "Управляющая компания"
+   ],
+   [
+    "Срок договора аренды от",
+    "01.04.2026"
+   ],
+   [
+    "Срок договора аренды до",
+    "01.04.2031"
+   ],
+   [
+    "Месячная арендная плата",
+    "190 000 руб."
+   ],
+   [
+    "Годовой арендный поток",
+    "2 280 000 руб."
+   ],
+   [
+    "Окупаемость",
+    "9.9 лет (без учета индексации)"
+   ],
+   [
+    "Доходность",
+    "10.1% годовых"
+   ]
+  ],
+  "terms": [
+   [
+    "Цена за м2",
+    "218 446 руб"
+   ],
+   [
+    "Общая стоимость",
+    "22 500 000 руб"
+   ],
+   [
+    "Комиссия",
+    "Без комиссии"
+   ]
+  ],
+  "description": [
+   "Продажа торгового помещения 102,6 м2 на ул. Феодосийская, д. 7 корпус 6 (11 минут пешком от метро Улица Старокачаловская).",
+   "Помещение 102,6 м2 располагается на 1 этаже жилого дома, открытая планировка, два отдельных входа с фасада, высота потолка 3,5 м, витринные окна по фасаду. Электрическая мощность 21 кВт. Парковка перед фасадом. Место для размещения рекламы.",
+   "Помещение располагается в центре жилого массива. Интенсивный автомобильный и пешеходный трафик вдоль помещения.",
+   "Ранее располагался магазин \"Вкусвилл\".",
+   "Текущие арендаторы: 1. Яндекс маркет - 30 м2, ставка - 55 тыс/мес (с 01.27 - 60 тыс/мес); 2. Детская школа танцев - 51 м2, ставка - 100 тыс/мес; 3. Вакантная площадь - 16 м2, ставка 35 тыс/мес. Коммунальные платежи оплачиваются дополнительно. Итого: 190 тыс/мес.",
+   "Стоимость 22,5 млн. рублей. Без комиссии."
+  ],
+  "broker": "Никита",
+  "photos": 7,
+  "url": "https://malinaproperty.ru/property/propertiesRetail/166571"
+ },
+ {
+  "n": 2,
+  "title": "Продажа помещения с арендатором Четыре Лапы",
+  "type": "Торговое помещение (лот 184736)",
+  "address": "г. Люберцы, ул. рп. Октябрьский, ул Ленина, д. 25",
+  "metro": "Котельники (транспортом 20 мин.)",
+  "views": 950,
+  "price": "36 000 000",
+  "price_m2": "208 092",
+  "params": [
+   [
+    "Площадь",
+    "173 м2"
+   ],
+   [
+    "Этаж",
+    "1"
+   ],
+   [
+    "Планировка",
+    "Открытая"
+   ],
+   [
+    "Отделка",
+    "Качественный ремонт"
+   ],
+   [
+    "Высота потолков",
+    "3 м"
+   ],
+   [
+    "Мощность электроэнергии",
+    "39 кВт"
+   ],
+   [
+    "Парковка",
+    "Перед фасадом"
+   ]
+  ],
+  "tenant": [
+   [
+    "Арендатор",
+    "сетевой зоомагазин \"Четыре Лапы\""
+   ],
+   [
+    "Срок договора аренды от",
+    "22.01.2026"
+   ],
+   [
+    "Срок договора аренды до",
+    "2031"
+   ],
+   [
+    "Месячная арендная плата",
+    "250 000 руб."
+   ],
+   [
+    "Годовой арендный поток",
+    "3 000 000 руб."
+   ],
+   [
+    "Ежегодная индексация",
+    "5%"
+   ],
+   [
+    "Окупаемость",
+    "12 лет (без учета индексации)"
+   ],
+   [
+    "Доходность",
+    "8.3% годовых"
+   ]
+  ],
+  "terms": [
+   [
+    "Цена за м2",
+    "208 092 руб"
+   ],
+   [
+    "Общая стоимость",
+    "36 000 000 руб"
+   ],
+   [
+    "Комиссия",
+    "Без комиссии"
+   ]
+  ],
+  "description": [
+   "Продажа торгового помещения 172,9 м2 с арендатором зоомагазин \"Четыре Лапы\" по адресу г.о. Люберцы, рабочий пос. Октябрьский, ул. Ленина, 25 (20 минут транспортом от метро Котельники). 1-я линия домов.",
+   "Помещение 172,9 м2 располагается на 1 этаже, открытая планировка, отдельный входа с фасада и со двора (соседняя дверь ВкусВилл), высота потолка 3 м. Электрическая мощность 39,5 кВт. Парковка перед фасадом. Место для размещения рекламы.",
+   "Помещение располагается в центре жилого массива, вокруг большой дефицит торговых площадей. Интенсивный автомобильный и пешеходный трафик вдоль помещения, рядом остановка общественного транспорта. В радиусе 500м2 проживает более 5000 человек. Окружение: Пятерочки, ВкусВилл, ВинЛаб, магазин \"Магнит Косметик\", Аптека.",
+   "Арендатор: сетевой зоомагазин \"Четыре Лапы\", месячная арендная плата 250 000 рублей+ 5 % НДС. Ежегодная безусловная индексация 5%. Окупаемость 12 лет.",
+   "Стоимость продажи 36 млн. рублей. Без комиссии."
+  ],
+  "broker": "Андрей",
+  "photos": 7,
+  "url": "https://malinaproperty.ru/property/propertiesRetail/184736"
+ },
+ {
+  "n": 3,
+  "title": "Продажа нежилого помещения с банком у метро Менделеевская",
+  "type": "Торговое помещение (лот 172361)",
+  "address": "г. Москва, ул. Новослободская , д. 19с1",
+  "metro": "Менделеевская (пешком 1 мин.)",
+  "views": 2375,
+  "price": "36 000 000",
+  "price_m2": "2 250 000",
+  "params": [
+   [
+    "Площадь",
+    "16 м2"
+   ],
+   [
+    "Этаж",
+    "1"
+   ],
+   [
+    "Планировка",
+    "Открытая"
+   ],
+   [
+    "Высота потолков",
+    "3.3 м"
+   ],
+   [
+    "Мощность электроэнергии",
+    "10 кВт"
+   ],
+   [
+    "Парковка",
+    "Перед фасадом"
+   ],
+   [
+    "Вытяжка",
+    "Можно установить"
+   ]
+  ],
+  "tenant": [
+   [
+    "Арендатор",
+    "МОРСКОЙ АКЦИОНЕРНЫЙ БАНК (Акционерное Общество)"
+   ],
+   [
+    "Срок договора аренды от",
+    "2023"
+   ],
+   [
+    "Месячная арендная плата",
+    "257 167 руб."
+   ],
+   [
+    "Годовой арендный поток",
+    "3 086 004 руб."
+   ],
+   [
+    "Ежегодная индексация",
+    "По ИПЦ"
+   ],
+   [
+    "Окупаемость",
+    "11.7 лет (без учета индексации)"
+   ],
+   [
+    "Доходность",
+    "8.6% годовых"
+   ]
+  ],
+  "terms": [
+   [
+    "Цена за м2",
+    "2 250 000 руб"
+   ],
+   [
+    "Общая стоимость",
+    "36 000 000 руб"
+   ],
+   [
+    "Комиссия",
+    "Без комиссии"
+   ]
+  ],
+  "description": [
+   "Продажа торгового помещения 15,9 м2 на ул. Новослободская, д. 19с1 (1 минута пешком от метро Менделеевская). 1 линия домов.",
+   "Помещение 15,9 м2, располагается на 1 этаже, открытая планировка, отдельный вход с фасада, высота потолка 3,3 м, витринные окна по фасаду. Коммуникации центральные. Электрическая мощность предоставляется в необходимом объеме. Парковка перед фасадом. Место для размещения рекламы.",
+   "Торговое помещение расположено на первой фасадной линии Новослободской улицы. Сверхинтенсивные пешеходные потоки, достигающие показателей - 4 000человек/час пик. Помещение в 100 метрах от метро «Менделеевская», в окружении плотной жилой застройки, административных зданий, Бизнес Центров и ВУЗов. Развитая торговая инфраструктура. Индексация ежегодная по ИПЦ.",
+   "Арендатор: : \"МОРСКОЙ АКЦИОНЕРНЫЙ БАНК (Акционерное Общество)\"",
+   "Стоимость продажи 36 млн. рублей. Без комиссии."
+  ],
+  "broker": null,
+  "photos": 7,
+  "url": "https://malinaproperty.ru/property/propertiesRetail/172361"
+ },
+ {
+  "n": 4,
+  "title": "Продажа арендного бизнеса у метро Нагорная",
+  "type": "Торговое помещение (лот 186641)",
+  "address": "г. Москва, ул. Электролитный проезд, д. 7А/1",
+  "metro": "Нагорная (пешком 2 мин.)",
+  "views": 626,
+  "price": "75 000 000",
+  "price_m2": "862 068",
+  "params": [
+   [
+    "Площадь",
+    "87 м2"
+   ],
+   [
+    "Этаж",
+    "1"
+   ],
+   [
+    "Планировка",
+    "Открытая"
+   ],
+   [
+    "Отделка",
+    "Под отделку"
+   ],
+   [
+    "Высота потолков",
+    "4 м"
+   ],
+   [
+    "Мощность электроэнергии",
+    "20 кВт"
+   ],
+   [
+    "Вытяжка",
+    "Есть"
+   ]
+  ],
+  "tenant": [
+   [
+    "Арендатор",
+    "Плов центр"
+   ],
+   [
+    "Срок договора аренды от",
+    "2025"
+   ],
+   [
+    "Срок договора аренды до",
+    "2035"
+   ],
+   [
+    "Месячная арендная плата",
+    "500 000 руб."
+   ],
+   [
+    "Годовой арендный поток",
+    "6 000 000 руб."
+   ],
+   [
+    "Окупаемость",
+    "12.5 лет (без учета индексации)"
+   ],
+   [
+    "Доходность",
+    "8% годовых"
+   ]
+  ],
+  "terms": [
+   [
+    "Цена за м2",
+    "862 068 руб"
+   ],
+   [
+    "Общая стоимость",
+    "75 000 000 руб"
+   ],
+   [
+    "Налоги",
+    "УС налогообложения"
+   ],
+   [
+    "Коммунальные платежи",
+    "Оплачиваются отдельно"
+   ],
+   [
+    "Комиссия",
+    "Без комиссии"
+   ]
+  ],
+  "description": [
+   "Продажа торгового помещения 87 м2 на Электролитном проезде, д.7А/1 (2 минут пешком от метро Нагорная). 1-я линия домов.",
+   "Помещение 87 м2 располагается на 1 этаже, открытая планировка, отдельный вход с фасада и со двора, высота потолка 3 м, витринные окна по фасаду. Электрическая мощность 50 кВт. В помещении выполнен ремонт. Парковка перед фасадом. Место для размещения рекламы на фасаде.",
+   "Помeщeние pасположeнo нa первой линии, на оживлeнном пeрекpеcтке непocредствeнно нaпрoтив пешeхoднoго пeреxода, в 2-х минутах пешком от станции метро. Помещение расположено в уникальном месте Москвы сочетающий: деловую активность, (рядом расположено несколько Бизнес центров), досуговую активность( рядом располагается все сезонные спортивный центр Кант), так же помещение находится на въезде в ЖК бизнес класса ТОП-Хиллс (в ЖК 2000 квартир). Bсего в пешей доступности проживает более 12000. Идёт активное строительство ЖК Тwеlvе и еще несколько ЖК общая численность района увеличится в два раза.",
+   "Арендаторы: кафе Плов-центр. Общая месячная арендная плата 500 000 рублей.",
+   "Стоимость 75 млн. рублей. Без комиссии."
+  ],
+  "broker": null,
+  "photos": 7,
+  "url": "https://malinaproperty.ru/property/propertiesRetail/186641"
+ },
+ {
+  "n": 5,
+  "title": "Продажа помещения с арендатором Магнит в ЖК \"Остафьево\"",
+  "type": "В новостройке (лот 187102)",
+  "address": "г. Москва, ул. ЖК Остафьево, д. к21",
+  "metro": "Бунинская аллея (транспортом 10 мин.)",
+  "views": 627,
+  "price": "192 000 000",
+  "price_m2": "338 624",
+  "params": [
+   [
+    "Площадь",
+    "567 м2"
+   ],
+   [
+    "Этаж",
+    "1"
+   ],
+   [
+    "Планировка",
+    "Открытая"
+   ],
+   [
+    "Отделка",
+    "За выездом арендатора"
+   ],
+   [
+    "Высота потолков",
+    "3,5 м"
+   ],
+   [
+    "Мощность электроэнергии",
+    "102 кВт"
+   ],
+   [
+    "Парковка",
+    "Перед фасадом"
+   ]
+  ],
+  "tenant": [
+   [
+    "Арендатор",
+    "супермаркет \"Магнит\""
+   ],
+   [
+    "Месячная арендная плата",
+    "1 700 000 руб."
+   ],
+   [
+    "Годовой арендный поток",
+    "20 400 000 руб."
+   ],
+   [
+    "Окупаемость",
+    "9.4 лет (без учета индексации)"
+   ],
+   [
+    "Доходность",
+    "10.6% годовых"
+   ]
+  ],
+  "terms": [
+   [
+    "Цена за м2",
+    "338 624 руб"
+   ],
+   [
+    "Общая стоимость",
+    "192 000 000 руб"
+   ],
+   [
+    "Комиссия",
+    "Без комиссии"
+   ]
+  ],
+  "description": [
+   "Продажа торгового помещения 566,9 м2 с арендатором супермаркет \"Магнит\" в ЖК \"Остафьево\" корпус 20 (10 минут транспортом от метро Бунинская аллея).",
+   "Помещение 566,9 м2, располагается на 1 этаже, открытая планировка, 4 отдельных входа с фасада, высота потолка 3,5 м, витринные окна по фасаду. Электрическая мощность 102 кВт. Парковка перед фасадом. Место для размещения рекламы. Рядом две остановки общественного транспорта и пешеходный переход напротив помещения.",
+   "Ввод в эксплуатацию до 30 июля 2027 года.",
+   "«Остафьево» — жилой комплекс в Новой Москве, в 11 км от МКАД, рядом с одноименным музеем-усадьбой и городским парком «Барыши». Проект включает монолитные дома высотой от 10 до 14 этажей, а также закрытые дворы в формате мини-парков. На территории действуют 2 детских сада и школа. До конца 2026 года откроются еще одна школа и детский сад, а позже — поликлиника и ТЦ. Квартиры сдаются с готовой отделкой. Жилой массив в новой очереди около 15 000 жителей.",
+   "Подписан предварительный договор аренды с супермаркетом \"Магнит\", месячная арендная плата с 25 месяца 1 700 000 рублей или 6 % от товарооборота.",
+   "Стоимость продажи 192 000 000 рублей. Без комиссии."
+  ],
+  "broker": null,
+  "photos": 7,
+  "url": "https://malinaproperty.ru/property/propertiesRetail/187102"
+ }
+]
+</script>
+<!-- Окна сайта (как на malinaproperty.ru, решение 6). Кнопка открывает окно атрибутом data-modal="<id>".
+     Окна с карточкой объекта (m-view, m-price) заполняют её из заголовка и цены страницы (app.js).
+     После отправки любой формы — окно m-success: текст зависит от времени по Москве. -->
+<div id="m-view" class="modal layer" role="dialog" aria-modal="true" aria-labelledby="m-view-title" hidden>
+  <div class="modal__box layer__box">
+    <button class="modal__close js-modal-close" type="button" aria-label="Закрыть"><img src="../img/icons/close.svg" alt="" /></button>
+    <form class="modal__form js-phone-form">
+      <div class="modal__head"><h2 id="m-view-title">Посмотреть объект</h2><p>Уточним доступ в помещение и согласуем удобное время</p></div>
+      <div class="modal__fields">
+        <input class="input js-phone" type="tel" placeholder="Номер телефона" aria-label="Номер телефона" />
+        <input class="input js-req" type="text" placeholder="Ваше имя" aria-label="Ваше имя" />
+      </div>
+      <div class="modal__aside"><div class="obj-card js-obj-card"></div></div>
+      <button class="btn btn--primary btn--block modal__submit" type="submit">Согласовать просмотр</button>
+      <p class="consent">При нажатии на кнопку «Согласовать просмотр» вы даете согласие на обработку персональных данных на условиях и целях определенных <a href="#">Соглашением</a></p>
+    </form>
+  </div>
+</div>
+<div id="m-price" class="modal layer" role="dialog" aria-modal="true" aria-labelledby="m-price-title" hidden>
+  <div class="modal__box layer__box">
+    <button class="modal__close js-modal-close" type="button" aria-label="Закрыть"><img src="../img/icons/close.svg" alt="" /></button>
+    <form class="modal__form js-phone-form">
+      <div class="modal__head"><h2 id="m-price-title">Какую цену готовы предложить?</h2><p>Обсудим возможность сделки по вашей цене и вернемся с ответом</p></div>
+      <div class="modal__fields">
+        <input class="input js-req" type="text" placeholder="Ваше имя" aria-label="Ваше имя" />
+        <input class="input js-phone" type="tel" placeholder="Номер телефона" aria-label="Номер телефона" />
+        <input class="input js-req" type="text" inputmode="numeric" placeholder="Введите желаемую цену" aria-label="Желаемая цена" />
+      </div>
+      <div class="modal__aside"><div class="obj-card js-obj-card"></div></div>
+      <button class="btn btn--primary btn--block modal__submit" type="submit">Отправить предложение</button>
+      <p class="consent">При нажатии на кнопку «Отправить предложение» вы даете согласие на обработку персональных данных на условиях и целях определенных <a href="#">Соглашением</a></p>
+    </form>
+  </div>
+</div>
+<div id="m-presentation" class="modal layer" role="dialog" aria-modal="true" aria-labelledby="m-presentation-title" hidden>
+  <div class="modal__box layer__box">
+    <button class="modal__close js-modal-close" type="button" aria-label="Закрыть"><img src="../img/icons/close.svg" alt="" /></button>
+    <form class="modal__form js-phone-form">
+      <div class="modal__head"><h2 id="m-presentation-title">Получить презентацию объекта</h2><p>Все основные параметры объекта, фотографии, планировка и коммерческие условия — в одном PDF</p></div>
+      <div class="modal__fields">
+        <input class="input js-phone" type="tel" placeholder="Номер телефона" aria-label="Номер телефона" />
+        <input class="input js-req" type="text" placeholder="Ваше имя" aria-label="Ваше имя" />
+      </div>
+      <div class="modal__aside modal__pdf"><img src="../img/site/presentation.png" alt="" /><p>PDF 3 MB<br />Актуально на <span class="js-today"></span></p></div>
+      <button class="btn btn--primary btn--block modal__submit" type="submit">Получить презентацию</button>
+      <p class="consent">При нажатии на кнопку «Получить презентацию» вы даете согласие на обработку персональных данных на условиях и целях определенных <a href="#">Соглашением</a></p>
+    </form>
+  </div>
+</div>
+<div id="m-podbor" class="modal layer" role="dialog" aria-modal="true" aria-labelledby="m-podbor-title" hidden>
+  <div class="modal__box layer__box">
+    <button class="modal__close js-modal-close" type="button" aria-label="Закрыть"><img src="../img/icons/close.svg" alt="" /></button>
+    <form class="modal__form js-phone-form">
+      <div class="modal__head"><h2 id="m-podbor-title">Подберем 5–10 объектов под ваш запрос</h2><p>Из 2500+ актуальных предложений отберем варианты под ваши цели и бюджет.</p></div>
+      <div class="modal__fields">
+        <input class="input js-phone" type="tel" placeholder="Номер телефона" aria-label="Номер телефона" />
+        <input class="input js-req" type="text" placeholder="Ваше имя" aria-label="Ваше имя" />
+        <textarea class="input input--area" placeholder="Расскажите подробнее об объекте, который ищете" aria-label="Что ищете"></textarea>
+      </div>
+      <div class="modal__aside modal__broker">
+        <img class="mb-photo" src="../img/site/broker-sergey-200.png" alt="Сергей" />
+        <p class="mb-name"><b>Сергей</b><span>Брокер по работе с клиентами</span></p>
+        <ul class="mb-list">
+          <li><span><img src="../img/site/list-clock.svg" alt="" /></span><p>Первые варианты — в течение <br /><b>10–15</b> минут.</p></li>
+          <li><span><img src="../img/site/list-star.svg" alt="" /></span><p>Подбор и сопровождение покупки — без комиссии.</p></li>
+          <li><span><img src="../img/site/list-zoom.svg" alt="" /></span><p><b>Учтет</b> коммерческие и технические <b>критерии поиска</b> объекта</p></li>
+        </ul>
+      </div>
+      <button class="btn btn--primary btn--block modal__submit" type="submit">Получить подборку</button>
+      <p class="consent">При нажатии на кнопку «Получить подборку» вы даете согласие на обработку персональных данных на условиях и целях определенных <a href="#">Соглашением</a></p>
+    </form>
+  </div>
+</div>
+<div id="m-success" class="modal modal--success layer" role="dialog" aria-modal="true" aria-labelledby="m-success-title" hidden>
+  <div class="modal__box layer__box">
+    <button class="modal__close js-modal-close" type="button" aria-label="Закрыть"><img src="../img/icons/close.svg" alt="" /></button>
+    <span class="success-icon"><img src="../img/site/success.svg" alt="" /></span>
+    <h2 id="m-success-title">Ваша заявка принята!</h2>
+    <p>Мы приняли заявку и <span class="js-success-text">свяжемся с вами в ближайшее время</span></p>
+  </div>
+</div>
+</main>
+<script src="../app.js"></script>
+</body>
+</html>
